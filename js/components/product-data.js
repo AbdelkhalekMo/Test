@@ -134,8 +134,48 @@ class ProductCarousel {
         const nextBtn = document.querySelector(`[data-carousel="${this.containerId}"].next-btn`);
         const container = document.getElementById(this.containerId);
         
-        prevBtn?.addEventListener('click', () => this.prev());
-        nextBtn?.addEventListener('click', () => this.next());
+        console.log('ProductCarousel: Setting up arrows', { 
+            containerId: this.containerId,
+            prevBtn, 
+            nextBtn,
+            prevBtnClasses: prevBtn?.className,
+            nextBtnClasses: nextBtn?.className
+        });
+        
+        prevBtn?.addEventListener('click', () => {
+            console.log('Previous button clicked');
+            this.prev();
+        });
+        
+        nextBtn?.addEventListener('click', () => {
+            console.log('Next button clicked');
+            this.next();
+        });
+        
+        // Ensure arrows are visible
+        if (prevBtn) {
+            prevBtn.style.display = 'flex';
+            prevBtn.style.visibility = 'visible';
+            prevBtn.style.opacity = '1';
+            prevBtn.style.zIndex = '1000';
+            
+            // Ensure the arrow has an icon
+            if (!prevBtn.innerHTML.trim() || !prevBtn.querySelector('i')) {
+                prevBtn.innerHTML = `<i class="fas fa-chevron-left"></i>`;
+            }
+        }
+        
+        if (nextBtn) {
+            nextBtn.style.display = 'flex';
+            nextBtn.style.visibility = 'visible';
+            nextBtn.style.opacity = '1';
+            nextBtn.style.zIndex = '1000';
+            
+            // Ensure the arrow has an icon
+            if (!nextBtn.innerHTML.trim() || !nextBtn.querySelector('i')) {
+                nextBtn.innerHTML = `<i class="fas fa-chevron-right"></i>`;
+            }
+        }
         
         // Mouse hover events for auto-scroll
         if (container) {
@@ -1131,6 +1171,76 @@ function updateCartCounter() {
         }, 200);
     });
 }
+
+// Global function to fix arrow visibility
+window.fixProductArrows = function() {
+    console.log('Fixing product carousel arrows...');
+    
+    const arrows = document.querySelectorAll('.nav-btn, .product-slider__arrow, .carousel-nav');
+    
+    arrows.forEach((arrow) => {
+        // Basic visibility fixes
+        arrow.style.display = 'flex';
+        arrow.style.visibility = 'visible';
+        arrow.style.opacity = '1';
+        arrow.style.zIndex = '1000';
+        arrow.style.pointerEvents = 'auto';
+        
+        // Ensure icon exists
+        if (!arrow.innerHTML.trim() || !arrow.querySelector('i')) {
+            const isLeft = arrow.classList.contains('prev') || arrow.classList.contains('prev-btn');
+            arrow.innerHTML = `<i class="fas fa-chevron-${isLeft ? 'left' : 'right'}"></i>`;
+        }
+        
+        console.log('Fixed arrow:', arrow.className);
+    });
+    
+    console.log(`Fixed ${arrows.length} arrows`);
+};
+
+// Auto-fix arrows after page load
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        window.fixProductArrows();
+    }, 1000);
+});
+
+// Test function for product carousels
+window.testProductCarousels = function() {
+    console.log('Testing product carousels...');
+    
+    // Test all nav buttons
+    const arrows = document.querySelectorAll('.nav-btn, .product-slider__arrow');
+    console.log(`Found ${arrows.length} arrows`);
+    
+    arrows.forEach((arrow, index) => {
+        console.log(`Arrow ${index}:`, {
+            className: arrow.className,
+            visible: window.getComputedStyle(arrow).display !== 'none',
+            clickable: arrow.style.pointerEvents !== 'none',
+            hasClickListener: arrow.onclick !== null || arrow.addEventListener
+        });
+    });
+    
+    // Test carousel containers
+    const carousels = document.querySelectorAll('.product-carousel, .specials-container');
+    console.log(`Found ${carousels.length} carousels`);
+    
+    carousels.forEach((carousel, index) => {
+        const prevBtn = carousel.querySelector('.nav-btn.prev, .prev-btn');
+        const nextBtn = carousel.querySelector('.nav-btn.next, .next-btn');
+        
+        console.log(`Carousel ${index}:`, {
+            id: carousel.id,
+            hasPrevBtn: !!prevBtn,
+            hasNextBtn: !!nextBtn,
+            prevBtnVisible: prevBtn ? window.getComputedStyle(prevBtn).display !== 'none' : false,
+            nextBtnVisible: nextBtn ? window.getComputedStyle(nextBtn).display !== 'none' : false
+        });
+    });
+    
+    return { arrows: arrows.length, carousels: carousels.length };
+};
 
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {

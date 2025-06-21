@@ -10,8 +10,8 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
 }
 
@@ -351,11 +351,15 @@
 @media (max-width: 768px) {
     .product-container {
         margin: 10px 0;
-        padding: 15px 0;
+        padding: 15px 10px;
+        width: 100%;
+        overflow-x: hidden;
     }
     
     .product-carousel-container {
         padding: 0 10px;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .product-item {
@@ -431,11 +435,15 @@
 @media (max-width: 576px) {
     .product-container {
         margin: 10px 0;
-        padding: 15px 0;
+        padding: 15px 5px;
+        width: 100%;
+        overflow-x: hidden;
     }
     
     .product-carousel-container {
         padding: 0 5px;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .product-item {

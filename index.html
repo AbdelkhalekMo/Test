@@ -75,7 +75,7 @@
                 <div class="header__actions d-flex align-items-center gap-3">
                     <a href="#" class="header__account">
                         <i class="fas fa-user me-1"></i>
-                        Sign In
+                        <span class="header__account-text">Sign In</span>
                     </a>
                     <a href="#" class="header__cart">
                         <i class="fas fa-shopping-cart me-1"></i>
@@ -83,11 +83,60 @@
                     </a>
                 </div>
                 
-                <button class="header__toggle d-lg-none">
+                <button class="header__toggle d-lg-none" aria-label="Toggle mobile menu">
                     <span class="header__toggle-line"></span>
                     <span class="header__toggle-line"></span>
                     <span class="header__toggle-line"></span>
                 </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="header__mobile-menu">
+            <div class="header__mobile-menu-content">
+                <div class="header__mobile-search">
+                    <div class="search-bar">
+                        <input type="text" class="search-bar__input" placeholder="Search all of iHerb">
+                        <button class="search-bar__button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <nav class="header__mobile-nav">
+                    <a href="#" class="header__mobile-link">Supplements</a>
+                    <a href="#" class="header__mobile-link">Sports</a>
+                    <a href="#" class="header__mobile-link">Bath & Personal Care</a>
+                    <a href="#" class="header__mobile-link">Beauty</a>
+                    <a href="#" class="header__mobile-link">Grocery</a>
+                    <a href="#" class="header__mobile-link">Home</a>
+                    <a href="#" class="header__mobile-link">Baby & Kids</a>
+                    <a href="#" class="header__mobile-link">Pets</a>
+                    <hr class="header__mobile-divider">
+                    <a href="#" class="header__mobile-link">Brands A-Z</a>
+                    <a href="#" class="header__mobile-link">Health Topics</a>
+                    <hr class="header__mobile-divider">
+                    <a href="#" class="header__mobile-link header__mobile-link--special">Specials</a>
+                    <a href="#" class="header__mobile-link">Best Sellers</a>
+                    <a href="#" class="header__mobile-link">Try</a>
+                    <a href="#" class="header__mobile-link">New</a>
+                    <a href="#" class="header__mobile-link header__mobile-link--wellness">Wellness Hub</a>
+                </nav>
+                
+                <div class="header__mobile-actions">
+                    <a href="#" class="header__mobile-action">
+                        <i class="fas fa-user"></i>
+                        <span>Sign In</span>
+                    </a>
+                    <a href="#" class="header__mobile-action">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>iHerb App</span>
+                    </a>
+                    <a href="#" class="header__mobile-action">
+                        <i class="fas fa-globe"></i>
+                        <span>EG | EN | EGP</span>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -392,137 +441,184 @@
         </div>
     </section>
 
-    <!-- Newsletter Signup Section -->
-    <section class="newsletter-signup">
-        <div class="newsletter-signup__container">
-            <div class="newsletter-signup__content">
-                <h3 class="newsletter-signup__title">BE THE FIRST TO GET PROMO OFFERS AND REWARD PERKS STRAIGHT TO YOUR INBOX</h3>
-                <div class="newsletter-signup__form">
-                    <div class="newsletter-signup__input-group">
-                        <input type="email" class="newsletter-signup__input" placeholder="Enter Email Address">
-                        <button class="newsletter-signup__button">Sign Up</button>
-                    </div>
-                </div>
-                <div class="newsletter-signup__disclaimers">
-                    <p class="newsletter-signup__disclaimer">
-                        Your email address will be used to send you our Health Newsletters and emails about iHerb's products, services, sales, 
-                        and special offers, but you can unsubscribe at any time by clicking on the unsubscribe link in each email. For more 
-                        information about our privacy practices, please visit our <a href="#">Privacy Policy</a> page.
-                    </p>
-                    <p class="newsletter-signup__disclaimer">
-                        This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
-                    </p>
-                </div>
-            </div>
+    <!-- Rewards Banner -->
+    <div class="container-fluid">
+        <div style="background: linear-gradient(135deg, #c8e6c9, #a5d6a7); padding: 12px 0; text-align: center; border-radius: 8px; margin-bottom: 30px;">
+            <a href="#" style="background: linear-gradient(135deg, #ff6b35, #f7931e); border: none; color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; text-decoration: none; display: inline-block; transition: all 0.3s ease; animation: pulse 2s infinite;" class="rewards-btn">
+                <i class="fas fa-gift"></i> iHerb | REWARDS
+            </a>
+            <span class="ms-2">Get free products, insider access, and exclusive offers!</span>
         </div>
-    </section>
+    </div>
 
-    <!-- Green Rewards Bar -->
-    <section class="rewards-bar">
-        <div class="rewards-bar__container">
-            <div class="rewards-bar__content">
-                <div class="rewards-bar__rewards">
-                    <img src="assets/images/footer/iHerb Rewards.png" alt="iHerb Rewards" class="rewards-bar__rewards-logo">
-                    <span class="rewards-bar__rewards-text">Get free products, insider access, and exclusive offers!</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__container">
-            <div class="footer__content">
-                <!-- About Column -->
-                <div class="footer__column">
-                    <h4 class="footer__title">ABOUT</h4>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">About Us</a></li>
-                        <li><a href="#" class="footer__link">New? Take Become</a></li>
-                        <li><a href="#" class="footer__link">Affiliate Program</a></li>
-                        <li><a href="#" class="footer__link">Affiliate Program</a></li>
-                        <li><a href="#" class="footer__link">We Give Back</a></li>
+    <!-- Main Footer -->
+    <footer style="background-color: #f8f9fa; padding: 40px 0; border-top: 1px solid #e9ecef;">
+        <div class="container">
+            <div class="row">
+                <!-- About Section -->
+                <div class="col-lg-2 col-md-6 footer-section">
+                    <h6 style="color: #333; font-weight: bold; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">About</h6>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">About Us</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #dc3545; font-weight: 500; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">New! Store Reviews</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Rewards Program</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Affiliate Program</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">We Give Back</a></li>
                     </ul>
                 </div>
 
-                <!-- Company Column -->
-                <div class="footer__column">
-                    <h4 class="footer__title">COMPANY</h4>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">Careers</a></li>
-                        <li><a href="#" class="footer__link">Press</a></li>
-                        <li><a href="#" class="footer__link">Investor Relations</a></li>
-                        <li><a href="#" class="footer__link">Share with iHerb</a></li>
+                <!-- Company Section -->
+                <div class="col-lg-2 col-md-6 footer-section">
+                    <h6 style="color: #333; font-weight: bold; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Company</h6>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Corporate</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Press</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Partner with iHerb</a></li>
                     </ul>
                 </div>
 
-                <!-- Resources Column -->
-                <div class="footer__column">
-                    <h4 class="footer__title">RESOURCES</h4>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">Wellness Hub</a></li>
-                        <li><a href="#" class="footer__link">iHerb Health Library</a></li>
-                        <li><a href="#" class="footer__link">Lab & Safety</a></li>
+                <!-- Resources Section -->
+                <div class="col-lg-2 col-md-6 footer-section">
+                    <h6 style="color: #333; font-weight: bold; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Resources</h6>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Wellness Hub</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Accessibility View</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Sales & Offers</a></li>
                     </ul>
                 </div>
 
-                <!-- Customer Service Column -->
-                <div class="footer__column">
-                    <h4 class="footer__title">CUSTOMER SERVICE</h4>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">Contact Us</a></li>
-                        <li><a href="#" class="footer__link">Support & Product Information</a></li>
-                        <li><a href="#" class="footer__link">Returns</a></li>
-                        <li><a href="#" class="footer__link">Shipping</a></li>
-                        <li><a href="#" class="footer__link">Communication Preferences</a></li>
+                <!-- Customer Service Section -->
+                <div class="col-lg-2 col-md-6 footer-section">
+                    <h6 style="color: #333; font-weight: bold; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Customer Service</h6>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Contact Us</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Suggest a Product</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Order Status</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Shipping</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: #666; text-decoration: none; font-size: 13px; transition: color 0.3s ease;">Communication Preferences</a></li>
                     </ul>
                 </div>
 
-                <!-- Mobile Apps Column -->
-                <div class="footer__column footer__column--apps">
-                    <h4 class="footer__title">MOBILE APPS</h4>
-                    <div class="footer__app-downloads">
-                        <a href="#" class="footer__app-link">
-                            <img src="assets/images/footer/Link.png" alt="Download on App Store" class="footer__app-image">
+                <!-- Mobile Apps Section -->
+                <div class="col-lg-4 col-md-12" style="text-align: center;">
+                    <h6 style="color: #333; font-weight: bold; margin-bottom: 15px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Mobile Apps</h6>
+                    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                        <a href="#" style="display: inline-block; transition: transform 0.3s ease;" class="app-btn" id="google-play-btn">
+                            <img src="assets/images/footer/iHerb App on Google Play Store.png" alt="Google Play" style="width: 140px; height: auto; border-radius: 8px;">
                         </a>
-                        <a href="#" class="footer__app-link">
-                            <img src="assets/images/footer/iHerb App on Google Play Store.png" alt="Get it on Google Play" class="footer__app-image">
+                        <a href="#" style="display: inline-block; transition: transform 0.3s ease;" class="app-btn" id="app-store-btn">
+                            <img src="assets/images/footer/Link.png" alt="App Store" style="width: 140px; height: auto; border-radius: 8px;">
                         </a>
                     </div>
-                    <div class="footer__qr-section">
-                        <img src="assets/images/footer/QR Code App.png" alt="QR Code" class="footer__qr-code">
+                    <div style="margin-top: 20px; text-align: center;">
+                        <img src="assets/images/footer/QR Code App.png" alt="QR Code" id="qr-code-img" style="width: 80px; height: 80px; border: 2px solid #ddd; border-radius: 8px;">
                     </div>
-                </div>
-            </div>
-
-            <!-- Social Media -->
-            <div class="footer__social-section">
-                <div class="footer__social-links">
-                    <a href="#" class="footer__social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="footer__social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="footer__social-link"><i class="fab fa-pinterest"></i></a>
-                    <a href="#" class="footer__social-link"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-
-            <!-- Copyright Section -->
-            <div class="footer__copyright">
-                <p class="footer__copyright-text">
-                    © 1996-2024 Copyright 1996-2024 iHerb, LLC. All rights reserved. iHerb® is a registered trademark of iHerb, LLC. *Disclaimer: Statements made, or products sold through this website, have not been evaluated by the United States Food and Drug Administration. They are not intended to diagnose, treat, cure or prevent any disease. Read more.
-                </p>
-                <div class="footer__legal-links">
-                    <a href="#" class="footer__legal-link">Privacy Policy</a>
-                    <span class="footer__separator">|</span>
-                    <a href="#" class="footer__legal-link">Terms of Use</a>
-                    <span class="footer__separator">|</span>
-                    <a href="#" class="footer__legal-link">Help</a>
-                    <span class="footer__separator">|</span>
-                    <a href="#" class="footer__legal-link">Accessibility</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Newsletter Section -->
+    <div class="container">
+        <div style="background: linear-gradient(135deg, #e8f5e8, #f1f8e9); padding: 30px; border-radius: 10px; margin: 30px 0;">
+            <h5 style="color: #333; font-weight: bold; margin-bottom: 20px; text-align: center;">BE THE FIRST TO GET PROMO OFFERS AND REWARD PERKS STRAIGHT TO YOUR INBOX</h5>
+            <form style="display: flex; gap: 10px; max-width: 400px; margin: 0 auto;" id="newsletter-form">
+                <input type="email" placeholder="Enter Email Address" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                <button type="submit" style="background: linear-gradient(135deg, #28a745, #20c997); color: white; border: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Sign up</button>
+            </form>
+            <p style="margin-top: 1rem; color: #6c757d; font-size: 12px; text-align: center;">
+                Your email address will be used to send you Health Newsletters and emails about iHerb's products, services, sales, and special offers. You can unsubscribe at any time by clicking on the unsubscribe link in each email. For more information on our use of your personal information and your rights, see our <a href="#" style="color: #28a745;">Privacy Policy</a>.
+            </p>
+            <p style="color: #6c757d; font-size: 12px; text-align: center;">
+                This site is protected by reCAPTCHA and the <a href="#" style="color: #28a745;">Google Privacy Policy</a> and <a href="#" style="color: #28a745;">Terms of Service</a> apply.
+            </p>
+        </div>
+    </div>
+
+    <!-- Social Links and Reviews -->
+    <div class="container text-center">
+        <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
+            <a href="#" style="color: #666; font-size: 24px; transition: all 0.3s ease;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="color: #666; font-size: 24px; transition: all 0.3s ease;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: #666; font-size: 24px; transition: all 0.3s ease;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: #666; font-size: 24px; transition: all 0.3s ease;"><i class="fab fa-pinterest"></i></a>
+            <a href="#" style="color: #666; font-size: 24px; transition: all 0.3s ease;"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <div style="color: #ffa500; font-size: 16px; margin-bottom: 5px;">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span class="ms-2">4.5</span>
+            </div>
+            <div style="font-size: 12px; color: #666;">
+                <strong>iHerb</strong><br>
+                Store Reviews
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div style="background-color: #333; color: #ccc; padding: 20px 0; font-size: 12px; text-align: center;">
+        <div class="container">
+            <p style="margin-bottom: 0;">
+                iHerb.com © Copyright 1997-2025 iHerb, LLC. All rights reserved. iHerb® is a registered trademark of iHerb, LLC. 
+                *Disclaimer: Statements made, or products sold through this website, have not been evaluated by the United States Food and Drug Administration. 
+                They are not intended to diagnose, treat, cure or prevent any disease. PLEASE NOTE that iHerb, LLC is not affiliated with or in any way or 
+                manner related to websites utilizing the iHerb® trademark or iHerb® branded products from unauthorized sources. 
+                <a href="#" style="color: #28a745; text-decoration: none;">Read more</a>
+            </p>
+        </div>
+    </div>
+
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .rewards-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
+        }
+        
+        .footer-section a:hover {
+            color: #28a745 !important;
+        }
+        
+        .app-btn:hover {
+            transform: translateY(-2px) !important;
+        }
+        
+        #qr-code-img:hover {
+            opacity: 0.7 !important;
+        }
+        
+        .container .social-links a:hover {
+            color: #28a745 !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        #newsletter-form button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3) !important;
+        }
+        
+        @media (max-width: 768px) {
+            #newsletter-form {
+                flex-direction: column !important;
+            }
+            
+            .footer-section {
+                margin-bottom: 30px !important;
+                text-align: center !important;
+            }
+        }
+    </style>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -539,5 +635,112 @@
     <script src="js/components/wellness-hub.js"></script>
     <script src="js/components/animations.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Newsletter form submission
+            $('#newsletter-form').on('submit', function(e) {
+                e.preventDefault();
+                const email = $(this).find('input[type="email"]').val();
+                
+                // Animate button
+                const button = $(this).find('button');
+                const originalText = button.text();
+                
+                button.text('Signing up...').prop('disabled', true);
+                
+                // Simulate API call
+                setTimeout(function() {
+                    button.text('Signed up!').removeClass('btn-success').addClass('btn-success');
+                    setTimeout(function() {
+                        button.text(originalText).prop('disabled', false);
+                        $('#newsletter-form')[0].reset();
+                    }, 2000);
+                }, 1000);
+                
+                // Show success message
+                if (!$('.success-message').length) {
+                    $('<div class="success-message alert alert-success mt-3 text-center">Thank you for subscribing to our newsletter!</div>')
+                        .insertAfter('#newsletter-form')
+                        .fadeIn()
+                        .delay(3000)
+                        .fadeOut(function() {
+                            $(this).remove();
+                        });
+                }
+            });
+            
+            // Smooth hover effects for links
+            $('.footer-section a').hover(
+                function() {
+                    $(this).animate({paddingLeft: '5px'}, 200);
+                },
+                function() {
+                    $(this).animate({paddingLeft: '0px'}, 200);
+                }
+            );
+            
+            // App store button clicks
+            $('#google-play-btn').click(function(e) {
+                e.preventDefault();
+                alert('Redirecting to Google Play Store...');
+            });
+            
+            $('#app-store-btn').click(function(e) {
+                e.preventDefault();
+                alert('Redirecting to App Store...');
+            });
+            
+            // QR Code interaction
+            $('#qr-code-img').hover(
+                function() {
+                    $(this).animate({opacity: 0.7}, 200);
+                },
+                function() {
+                    $(this).animate({opacity: 1}, 200);
+                }
+            );
+            
+            // Social media links
+            $('.container .social-links a').click(function(e) {
+                e.preventDefault();
+                const platform = $(this).find('i').attr('class').split(' ')[1].replace('fa-', '');
+                alert(`Opening ${platform} in new window...`);
+            });
+            
+            // Rewards banner interaction
+            $('.rewards-btn').click(function(e) {
+                e.preventDefault();
+                $(this).addClass('animate__animated animate__pulse');
+                setTimeout(() => {
+                    $(this).removeClass('animate__animated animate__pulse');
+                }, 1000);
+                alert('Welcome to iHerb Rewards Program!');
+            });
+            
+            // Add loading states for better UX
+            $('a[href="#"]').click(function(e) {
+                e.preventDefault();
+                const $this = $(this);
+                const originalText = $this.text();
+                
+                if (!$this.hasClass('rewards-btn') && !$this.hasClass('app-btn') && !$this.parent().hasClass('social-links')) {
+                    $this.text('Loading...');
+                    setTimeout(function() {
+                        $this.text(originalText);
+                    }, 1000);
+                }
+            });
+            
+            // Responsive menu for mobile
+            $(window).resize(function() {
+                if ($(window).width() < 768) {
+                    $('.footer-section').addClass('text-center');
+                } else {
+                    $('.footer-section').removeClass('text-center');
+                }
+            }).trigger('resize');
+        });
+    </script>
 </body>
 </html>

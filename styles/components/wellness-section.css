@@ -11,8 +11,8 @@
     left: 50%;
     right: 50%;
     bottom: 0;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    width: 100%;
+    max-width: 100%;
     background-color: #f8f9fa;
     z-index: -1;
 }

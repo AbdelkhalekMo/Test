@@ -4,16 +4,22 @@
     background-color: #f8f9fa;
     margin-top: 0; /* Remove top margin to eliminate gap with navigation bar */
     margin-bottom: 3rem; /* Reduced since sections are now contained within */
+    user-select: none; /* Prevent text selection during touch */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .hero-slider__container {
     overflow: hidden;
+    position: relative;
 }
 
 .hero-slider__wrapper {
     position: relative;
     width: 100%;
-    height: 450px; /* Increased height for better image display */
+    height: 350px; /* Increased height for better visibility */
+    touch-action: pan-y; /* Allow vertical scrolling but handle horizontal ourselves */
 }
 
 .hero-slider__slides {
@@ -21,6 +27,8 @@
     width: 400%; /* 4 slides × 100% */
     height: 100%;
     transition: transform 0.5s ease-in-out;
+    will-change: transform; /* Optimize for animations */
+    transform: translateX(0%); /* Ensure initial position */
 }
 
 .hero-slider__slide {
@@ -31,9 +39,12 @@
 
 .hero-slider__image {
     width: 100%;
-    height: 100%;    object-position: center;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     display: block;
-    background-color: #f8f9fa; /* Light background for any empty space */
+    background-color: #f8f9fa;
+    pointer-events: none; /* Prevent image dragging */
 }
 
 /* Navigation Arrows */
@@ -54,6 +65,8 @@
     z-index: 100;
     font-size: 1.2rem;
     color: #333;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .hero-slider__arrow:hover {
@@ -61,6 +74,10 @@
     color: #6DB33F;
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-slider__arrow:active {
+    transform: translateY(-50%) scale(0.95);
 }
 
 .hero-slider__arrow--prev {
@@ -74,7 +91,7 @@
 /* Section Navigation */
 .hero-slider__sections {
     position: absolute;
-    bottom: 0; /* Position inside the hero slider container */
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -85,9 +102,14 @@
     padding: 0;
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 0, 0, 0.08);
-    height: 60px; /* Reduced height to fit inside */
+    height: 60px;
     width: auto;
     max-width: 95%;
+}
+
+/* Hide scrollbar for webkit browsers */
+.hero-slider__sections.hide-scrollbar::-webkit-scrollbar {
+    display: none;
 }
 
 .hero-slider__section {
@@ -108,6 +130,8 @@
     height: 100%;
     min-width: 150px;
     flex: 1;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .hero-slider__section:last-child {
@@ -251,13 +275,33 @@
 }
 
 /* Mobile Responsive */
+@media (max-width: 992px) {
+    .hero-slider__wrapper {
+        height: 300px;
+    }
+    
+    .hero-slider__arrow {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .hero-slider__arrow--prev {
+        left: 15px;
+    }
+    
+    .hero-slider__arrow--next {
+        right: 15px;
+    }
+}
+
 @media (max-width: 768px) {
     .hero-slider {
-        margin-bottom: 6rem; /* Reduced for mobile */
+        margin-bottom: 5rem;
     }
     
     .hero-slider__wrapper {
-        height: 300px; /* Increased for better image display */
+        height: 250px;
     }
     
     .hero-slider__arrow {
@@ -275,14 +319,15 @@
     }
     
     .hero-slider__sections {
-        bottom: -30px; /* Moved closer to banner on mobile */
+        bottom: -25px;
         flex-wrap: nowrap;
         max-width: 95%;
-        height: 60px; /* Increased height */
+        height: 55px;
         overflow-x: auto;
         overflow-y: hidden;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        padding: 0 5px;
     }
     
     .hero-slider__sections::-webkit-scrollbar {
@@ -290,44 +335,9 @@
     }
     
     .hero-slider__section {
-        padding: 10px 20px;
-        min-width: 140px;
-        flex-shrink: 0;
-    }
-    
-    .hero-slider__section-title {
-        font-size: 12px;
-    }
-    
-    .hero-slider__section-subtitle {
-        font-size: 11px;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-slider {
-        margin-bottom: 5rem; /* Reduced for small mobile */
-    }
-    
-    .hero-slider__wrapper {
-        height: 250px; /* Increased for better image display */
-    }
-    
-    .hero-slider__arrow {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-    }
-    
-    .hero-slider__sections {
-        bottom: -25px; /* Moved closer to banner on small mobile */
-        max-width: 98%;
-        height: 50px; /* Increased height */
-    }
-    
-    .hero-slider__section {
         padding: 8px 16px;
-        min-width: 120px;
+        min-width: 130px;
+        flex-shrink: 0;
     }
     
     .hero-slider__section-title {
@@ -337,9 +347,92 @@
     .hero-slider__section-subtitle {
         font-size: 10px;
     }
+}
+
+@media (max-width: 576px) {
+    .hero-slider {
+        margin-bottom: 4rem;
+    }
+    
+    .hero-slider__wrapper {
+        height: 220px;
+    }
+    
+    .hero-slider__arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .hero-slider__arrow--prev {
+        left: 8px;
+    }
+    
+    .hero-slider__arrow--next {
+        right: 8px;
+    }
+    
+    .hero-slider__sections {
+        bottom: -20px;
+        max-width: 98%;
+        height: 50px;
+        padding: 0 3px;
+    }
+    
+    .hero-slider__section {
+        padding: 6px 12px;
+        min-width: 110px;
+    }
+    
+    .hero-slider__section-title {
+        font-size: 10px;
+        margin-bottom: 2px;
+    }
+    
+    .hero-slider__section-subtitle {
+        font-size: 9px;
+    }
     
     .hero-slider__section--see-all {
+        min-width: 90px;
+        gap: 4px;
+    }
+    
+    .hero-slider__section--see-all i {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slider__wrapper {
+        height: 200px;
+    }
+    
+    .hero-slider__arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .hero-slider__sections {
+        height: 45px;
+    }
+    
+    .hero-slider__section {
+        padding: 4px 10px;
         min-width: 100px;
+    }
+    
+    .hero-slider__section-title {
+        font-size: 9px;
+    }
+    
+    .hero-slider__section-subtitle {
+        font-size: 8px;
+    }
+    
+    .hero-slider__section--see-all {
+        min-width: 80px;
     }
 }
 

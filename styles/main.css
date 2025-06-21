@@ -45,6 +45,8 @@ body {
     color: var(--text-color);
     background-color: #fff;
     line-height: 1.6;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .container-custom {
@@ -239,4 +241,60 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-dark);
+}
+
+/* Mobile Responsive Fixes - Prevent Horizontal Scrolling */
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ensure all sections behave properly on mobile */
+@media (max-width: 768px) {
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Fix any remaining full-width issues */
+    section {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Ensure product containers don't overflow */
+    .product-container-section,
+    .specials-picked-section,
+    .product-section,
+    .category-section {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-fluid {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* Extra small mobile fixes */
+    .product-container-section,
+    .specials-picked-section,
+    .product-section,
+    .category-section {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
 } 
