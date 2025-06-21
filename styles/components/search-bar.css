@@ -1,0 +1,124 @@
+/* Search Bar Component - BEM Structure */
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar:focus-within {
+    border-color: #6DB33F;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(109, 179, 63, 0.1);
+}
+
+.search-bar__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 14px 20px;
+    font-size: 1rem;
+    background: transparent;
+    color: #333;
+}
+
+.search-bar__input::placeholder {
+    color: #757575;
+    font-weight: 400;
+}
+
+.search-bar__button {
+    background-color: #6DB33F;
+    border: none;
+    padding: 14px 24px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    border-radius: 0 25px 25px 0;
+}
+
+.search-bar__button:hover {
+    background-color: #5A9A35;
+    transform: scale(1.05);
+}
+
+.search-bar__button:active {
+    transform: scale(0.98);
+}
+
+/* Search suggestions dropdown */
+.search-bar__suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+}
+
+.search-bar__suggestion {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.search-bar__suggestion:hover,
+.search-bar__suggestion--highlighted {
+    background-color: #f8f9fa;
+}
+
+.search-bar__suggestion:last-child {
+    border-bottom: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .search-bar {
+        margin: 0 0.5rem;
+        flex: 1;
+        max-width: 300px;
+    }
+    
+    .search-bar__input {
+        padding: 8px 40px 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .search-bar__button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .search-bar {
+        margin: 0 0.25rem;
+        max-width: 200px;
+        min-width: 150px;
+    }
+    
+    .search-bar__input {
+        padding: 6px 35px 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .search-bar__button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+} 

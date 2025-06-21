@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iHerb Style - Health & Wellness Store</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Sales Bar -->
+    <div class="sales-bar">
+        <div class="sales-bar__container">
+            <div class="sales-bar__content">
+                <!-- Main promotional items -->
+                <div class="sales-bar__main-items">
+                    <a href="#" class="sales-bar__item sales-bar__item--with-timer">
+                        <i class="fas fa-fish"></i>
+                        25% Off Fish Oil & Omegas
+                        <span class="sales-bar__timer">Ends in: 14 H 56 M</span>
+                    </a>
+                    
+                    <a href="#" class="sales-bar__item">
+                        <i class="fas fa-percentage"></i>
+                        Up to 20% off Brands of the Week
+                    </a>
+                    
+                    <a href="#" class="sales-bar__item">
+                        World's Best Value
+                    </a>
+                </div>
+                
+                <!-- Right side actions -->
+                <div class="sales-bar__actions">
+                    <a href="#" class="sales-bar__action-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        iHerb App | iHerb
+                    </a>
+                    <a href="#" class="sales-bar__action-item">
+                        <i class="fas fa-globe"></i>
+                        EG | EN | EGP
+                    </a>
+                    <a href="#" class="sales-bar__action-item">
+                        <i class="fas fa-share-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="header__container d-flex justify-content-between align-items-center">
+                <div class="header__logo">
+                    <img src="assets/images/Link - Header logo Link to Home.png" alt="iHerb" class="header__logo-img">
+                </div>
+                
+                <div class="header__search flex-grow-1 mx-4">
+                    <div class="search-bar">
+                        <input type="text" class="search-bar__input" placeholder="Search all of iHerb">
+                        <button class="search-bar__button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="header__actions d-flex align-items-center gap-3">
+                    <a href="#" class="header__account">
+                        <i class="fas fa-user me-1"></i>
+                        Sign In
+                    </a>
+                    <a href="#" class="header__cart">
+                        <i class="fas fa-shopping-cart me-1"></i>
+                        <span class="header__cart-count">0</span>
+                    </a>
+                </div>
+                
+                <button class="header__toggle d-lg-none">
+                    <span class="header__toggle-line"></span>
+                    <span class="header__toggle-line"></span>
+                    <span class="header__toggle-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__content">
+                <!-- Group 1: Main Categories -->
+                <div class="navbar__nav">
+                    <a href="#" class="navbar__link">Supplements</a>
+                    <a href="#" class="navbar__link">Sports</a>
+                    <a href="#" class="navbar__link">Bath</a>
+                    <a href="#" class="navbar__link">Beauty</a>
+                    <a href="#" class="navbar__link">Grocery</a>
+                    <a href="#" class="navbar__link">Home</a>
+                    <a href="#" class="navbar__link">Baby</a>
+                    <a href="#" class="navbar__link">Pets</a>
+                </div>
+                
+                <!-- Group 2: Info Links -->
+                <div class="navbar__info-links">
+                    <a href="#" class="navbar__info-link">Brands A-Z</a>
+                    <a href="#" class="navbar__info-link">Health Topics</a>
+                </div>
+                
+                <!-- Group 3: Special Offers -->
+                <div class="navbar__special-offers">
+                    <a href="#" class="navbar__offer navbar__offer--red">Specials</a>
+                    <a href="#" class="navbar__offer">Best Sellers</a>
+                    <a href="#" class="navbar__offer">Try</a>
+                    <a href="#" class="navbar__offer">New</a>
+                    <a href="#" class="navbar__offer navbar__offer--green">Wellness Hub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider Section -->
+    <section class="hero-slider">
+        <div class="container-fluid p-0">
+            <div class="hero-slider__container position-relative">
+                <!-- Slider Wrapper -->
+                <div class="hero-slider__wrapper">
+                    <div class="hero-slider__slides">
+                        <!-- Slide 1 -->
+                        <div class="hero-slider__slide hero-slider__slide--active">
+                            <img src="assets/images/component 1/component1(first).png" alt="Daily Wellness Drop - 25% Off Fish Oil & Omegas" class="hero-slider__image">
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="hero-slider__slide">
+                            <img src="assets/images/component 1/component1(second).png" alt="Special Offer 2" class="hero-slider__image">
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="hero-slider__slide">
+                            <img src="assets/images/component 1/component1(third).png" alt="Special Offer 3" class="hero-slider__image">
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="hero-slider__slide">
+                            <img src="assets/images/component 1/component1(fourth).png" alt="Special Offer 4" class="hero-slider__image">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="hero-slider__arrow hero-slider__arrow--next" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Section Navigation -->
+                <div class="hero-slider__sections">
+                    <button class="hero-slider__section hero-slider__section--active" data-slide="0">
+                        <span class="hero-slider__section-title">FISH OIL & OMEGAS</span>
+                        <span class="hero-slider__section-subtitle">25% OFF</span>
+                    </button>
+                    <button class="hero-slider__section" data-slide="1">
+                        <span class="hero-slider__section-title">BEST SEASON EVER</span>
+                        <span class="hero-slider__section-subtitle">UP TO 20% OFF</span>
+                    </button>
+                    <button class="hero-slider__section" data-slide="2">
+                        <span class="hero-slider__section-title">WELLNESS EXPERTS</span>
+                        <span class="hero-slider__section-subtitle">LEARN MORE</span>
+                    </button>
+                    <button class="hero-slider__section" data-slide="3">
+                        <span class="hero-slider__section-title">OMEGA-3 SUPPLEMENTS</span>
+                        <span class="hero-slider__section-subtitle">LEARN MORE</span>
+                    </button>
+                    <button class="hero-slider__section hero-slider__section--see-all">
+                        <span class="hero-slider__section-title">SEE ALL</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Carousel Sections -->
+    <div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
+        <!-- Recommended Products Carousel -->
+        <div id="recommendedProducts">
+            <!-- Recommended products carousel will be rendered here -->
+        </div>
+        
+        <!-- Specials Products Carousel -->
+        <div id="specialsProducts">
+            <!-- Specials products carousel will be rendered here -->
+        </div>
+    </div>
+    
+    <!-- Shop by Category Section -->
+    <div id="shopByCategorySection">
+        <!-- Shop by category section will be rendered here -->
+    </div>
+    
+    <!-- Selected for you Filter Section -->
+    <div id="categorySection">
+        <!-- Selected for you filter section will be rendered here -->
+    </div>
+    
+    <!-- Trending Products Carousel (after Selected for you) -->
+    <div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
+        <div id="trendingProducts">
+            <!-- Trending products carousel will be rendered here -->
+        </div>
+    </div>
+
+    <!-- Why iHerb Section -->
+    <section class="why-iherb-section">
+        <div class="container">
+            <h2 class="why-iherb__title">Why iHerb?</h2>
+            
+            <div class="why-iherb__features">
+                <div class="why-iherb__feature">
+                    <div class="why-iherb__icon why-iherb__icon--products">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="why-iherb__feature-title">50,000+ Authentic products</h3>
+                    <p class="why-iherb__feature-description">
+                        Directly sourced products from authorized distributors.
+                    </p>
+                </div>
+                
+                <div class="why-iherb__feature">
+                    <div class="why-iherb__icon why-iherb__icon--freshness">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="why-iherb__feature-title">Freshness guaranteed</h3>
+                    <p class="why-iherb__feature-description">
+                        Temperature-controlled facilities to ensure quality.
+                    </p>
+                </div>
+                
+                <div class="why-iherb__feature">
+                    <div class="why-iherb__icon why-iherb__icon--service">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="why-iherb__feature-title">24/7 customer service</h3>
+                    <p class="why-iherb__feature-description">
+                        Customer service is a click away.
+                    </p>
+                </div>
+                
+                <div class="why-iherb__feature">
+                    <div class="why-iherb__icon why-iherb__icon--reviews">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="why-iherb__feature-title">Genuine reviews</h3>
+                    <p class="why-iherb__feature-description">
+                        Verified customer reviews help you make smarter buying choices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Container Section -->
+    <section class="product-container-section">
+        <div class="container-fluid">
+            <div class="product-container">
+                <div class="container-header">
+                    <div class="header-left">
+                        <h2 class="header-title">iHerb</h2>
+                        <span class="live-badge">LIVE</span>
+                        <i class="fas fa-info-circle info-icon"></i>
+                    </div>
+                    <div class="notification-badge">8</div>
+                </div>
+                
+
+                
+                <div class="row px-3" id="productGrid">
+                    <!-- Products will be generated by JavaScript -->
+                </div>
+                
+                <div class="row px-3" id="countryLabels">
+                    <!-- Country labels will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup Section -->
+    <section class="newsletter-signup">
+        <div class="newsletter-signup__container">
+            <div class="newsletter-signup__content">
+                <h3 class="newsletter-signup__title">BE THE FIRST TO GET PROMO OFFERS AND REWARD PERKS STRAIGHT TO YOUR INBOX</h3>
+                <div class="newsletter-signup__form">
+                    <div class="newsletter-signup__input-group">
+                        <input type="email" class="newsletter-signup__input" placeholder="Enter Email Address">
+                        <button class="newsletter-signup__button">Sign Up</button>
+                    </div>
+                </div>
+                <div class="newsletter-signup__disclaimers">
+                    <p class="newsletter-signup__disclaimer">
+                        Your email address will be used to send you our Health Newsletters and emails about iHerb's products, services, sales, 
+                        and special offers, but you can unsubscribe at any time by clicking on the unsubscribe link in each email. For more 
+                        information about our privacy practices, please visit our <a href="#">Privacy Policy</a> page.
+                    </p>
+                    <p class="newsletter-signup__disclaimer">
+                        This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Green Rewards Bar -->
+    <section class="rewards-bar">
+        <div class="rewards-bar__container">
+            <div class="rewards-bar__content">
+                <div class="rewards-bar__rewards">
+                    <img src="assets/images/footer/iHerb Rewards.png" alt="iHerb Rewards" class="rewards-bar__rewards-logo">
+                    <span class="rewards-bar__rewards-text">Get free products, insider access, and exclusive offers!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <!-- About Column -->
+                <div class="footer__column">
+                    <h4 class="footer__title">ABOUT</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">About Us</a></li>
+                        <li><a href="#" class="footer__link">New? Take Become</a></li>
+                        <li><a href="#" class="footer__link">Affiliate Program</a></li>
+                        <li><a href="#" class="footer__link">Affiliate Program</a></li>
+                        <li><a href="#" class="footer__link">We Give Back</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Column -->
+                <div class="footer__column">
+                    <h4 class="footer__title">COMPANY</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Careers</a></li>
+                        <li><a href="#" class="footer__link">Press</a></li>
+                        <li><a href="#" class="footer__link">Investor Relations</a></li>
+                        <li><a href="#" class="footer__link">Share with iHerb</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Column -->
+                <div class="footer__column">
+                    <h4 class="footer__title">RESOURCES</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Wellness Hub</a></li>
+                        <li><a href="#" class="footer__link">iHerb Health Library</a></li>
+                        <li><a href="#" class="footer__link">Lab & Safety</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service Column -->
+                <div class="footer__column">
+                    <h4 class="footer__title">CUSTOMER SERVICE</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Contact Us</a></li>
+                        <li><a href="#" class="footer__link">Support & Product Information</a></li>
+                        <li><a href="#" class="footer__link">Returns</a></li>
+                        <li><a href="#" class="footer__link">Shipping</a></li>
+                        <li><a href="#" class="footer__link">Communication Preferences</a></li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Apps Column -->
+                <div class="footer__column footer__column--apps">
+                    <h4 class="footer__title">MOBILE APPS</h4>
+                    <div class="footer__app-downloads">
+                        <a href="#" class="footer__app-link">
+                            <img src="assets/images/footer/Link.png" alt="Download on App Store" class="footer__app-image">
+                        </a>
+                        <a href="#" class="footer__app-link">
+                            <img src="assets/images/footer/iHerb App on Google Play Store.png" alt="Get it on Google Play" class="footer__app-image">
+                        </a>
+                    </div>
+                    <div class="footer__qr-section">
+                        <img src="assets/images/footer/QR Code App.png" alt="QR Code" class="footer__qr-code">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="footer__social-section">
+                <div class="footer__social-links">
+                    <a href="#" class="footer__social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Copyright Section -->
+            <div class="footer__copyright">
+                <p class="footer__copyright-text">
+                    © 1996-2024 Copyright 1996-2024 iHerb, LLC. All rights reserved. iHerb® is a registered trademark of iHerb, LLC. *Disclaimer: Statements made, or products sold through this website, have not been evaluated by the United States Food and Drug Administration. They are not intended to diagnose, treat, cure or prevent any disease. Read more.
+                </p>
+                <div class="footer__legal-links">
+                    <a href="#" class="footer__legal-link">Privacy Policy</a>
+                    <span class="footer__separator">|</span>
+                    <a href="#" class="footer__legal-link">Terms of Use</a>
+                    <span class="footer__separator">|</span>
+                    <a href="#" class="footer__legal-link">Help</a>
+                    <span class="footer__separator">|</span>
+                    <a href="#" class="footer__legal-link">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/components/sales-bar.js"></script>
+    <script src="js/components/header.js"></script>
+    <script src="js/components/hero-slider.js"></script>
+    <script src="js/components/product-data.js"></script>
+    <script src="js/components/product-slider.js"></script>
+    <script src="js/components/product-container.js"></script>
+    <script src="js/components/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
