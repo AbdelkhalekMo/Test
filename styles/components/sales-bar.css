@@ -10,7 +10,7 @@
 .sales-bar__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 240px;
+    padding: 0 20px;
 }
 
 .sales-bar__content {
@@ -136,21 +136,15 @@
 }
 
 /* Responsive Design to Match Product Cards */
-@media (max-width: 1400px) {
-    .sales-bar__container {
-        padding: 0 120px;
-    }
-}
-
 @media (max-width: 1200px) {
     .sales-bar__container {
-        padding: 0 60px;
+        padding: 0 20px;
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     .sales-bar__container {
-        padding: 0 30px;
+        padding: 0 20px;
     }
     
     .sales-bar__content {
@@ -169,8 +163,11 @@
         border-radius: 6px !important;
         border-right: 1px solid #e0e0e0 !important;
         margin-bottom: 4px;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding: 6px 12px;
+        flex: 1;
+        min-width: 140px;
+        text-align: center;
     }
     
     .sales-bar__actions {
@@ -183,18 +180,21 @@
         border-radius: 6px !important;
         border-right: 1px solid #e0e0e0 !important;
         margin-bottom: 4px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         padding: 6px 10px;
+        flex: 1;
+        min-width: 100px;
+        text-align: center;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .sales-bar__container {
         padding: 0 20px;
     }
     
     .sales-bar {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         padding: 6px 0;
     }
     
@@ -204,29 +204,40 @@
     
     .sales-bar__item,
     .sales-bar__action-item {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         padding: 5px 8px;
-        min-height: 32px;
+        min-height: 30px;
+        min-width: 120px;
     }
     
     .sales-bar__timer {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         margin-left: 4px;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
+    .sales-bar__container {
+        padding: 0 15px;
+    }
+    
     .sales-bar__item,
     .sales-bar__action-item {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         padding: 4px 6px;
         min-height: 28px;
+        min-width: 100px;
     }
     
     .sales-bar__item i,
     .sales-bar__action-item i {
-        font-size: 0.8rem;
-        margin-right: 4px;
+        font-size: 0.75rem;
+        margin-right: 3px;
+    }
+    
+    .sales-bar__timer {
+        font-size: 0.55rem;
+        margin-left: 3px;
     }
 }
 

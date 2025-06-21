@@ -1,8 +1,21 @@
 /* Newsletter Signup Section (Green Bar) - BEM Structure */
 .newsletter-signup {
-    background-color: #e8f5e8;
     padding: 40px 0;
     margin-top: 2rem;
+    position: relative;
+}
+
+.newsletter-signup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #e8f5e8;
+    z-index: -1;
 }
 
 .newsletter-signup__container {
@@ -158,9 +171,22 @@
 
 /* Green Rewards Bar - BEM Structure */
 .rewards-bar {
-    background-color: #6DB33F;
     padding: 20px 0;
     margin-top: 0;
+    position: relative;
+}
+
+.rewards-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #6DB33F;
+    z-index: -1;
 }
 
 .rewards-bar__container {
@@ -238,9 +264,22 @@
 
 /* Footer - BEM Structure */
 .footer {
-    background-color: #f8f9fa;
     padding: 40px 0 20px;
     border-top: 1px solid #e9ecef;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #f8f9fa;
+    z-index: -1;
 }
 
 .footer__container {

@@ -16,7 +16,7 @@
 .header__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 240px;
+    padding: 0 20px;
 }
 
 .header__logo {
@@ -83,11 +83,11 @@
     position: absolute;
     top: -8px;
     right: -8px;
-    background-color: #FF6B6B;
+    background-color: transparent;
     color: #fff;
     border-radius: 50%;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     min-width: 18px;
     height: 18px;
     display: flex;
@@ -137,7 +137,7 @@
 .navbar__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 240px;
+    padding: 0 20px;
 }
 
 .navbar__content {
@@ -228,14 +228,14 @@
 }
 
 /* Responsive Design to Match Product Cards */
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
     .header__container,
     .navbar__container {
-        padding: 0 120px;
+        padding: 0 20px;
     }
     
     .navbar__content {
-        gap: 8rem;
+        gap: 6rem;
     }
     
     .navbar__nav {
@@ -251,10 +251,10 @@
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
     .header__container,
     .navbar__container {
-        padding: 0 60px;
+        padding: 0 20px;
     }
     
     .header__search {
@@ -262,7 +262,7 @@
     }
     
     .navbar__content {
-        gap: 6rem;
+        gap: 4rem;
     }
     
     .navbar__nav {
@@ -278,10 +278,10 @@
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     .header__container,
     .navbar__container {
-        padding: 0 30px;
+        padding: 0 20px;
     }
     
     .navbar__content {
@@ -318,7 +318,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .header__container,
     .navbar__container {
         padding: 0 15px;
@@ -371,10 +371,10 @@
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
     .header__container,
     .navbar__container {
-        padding: 0 10px;
+        padding: 0 15px;
     }
     
     .header {
@@ -521,56 +521,4 @@
     border-radius: 4px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1400px) {
-    .header__container {
-        padding: 0 120px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .header__container {
-        padding: 0 60px;
-    }
-    
-    .header__search {
-        max-width: 400px;
-    }
-}
-
-@media (max-width: 992px) {
-    .header__container {
-        padding: 0 30px;
-    }
-    
-    .header__language,
-    .header__currency {
-        display: none;
-    }
-    
-    .header__actions {
-        gap: 0.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .header__container {
-        padding: 0 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .header__account span,
-    .header__cart span {
-        display: none;
-    }
-    
-    .header__account,
-    .header__cart {
-        padding: 8px;
-    }
-    
-    .header__search {
-        max-width: 250px;
-    }
-} 
+/* End of Header Styles */ 

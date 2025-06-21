@@ -11,8 +11,11 @@ class ProductCarousel {
         this.products = products;
         this.currentIndex = 0;
         this.itemsToShow = options.itemsToShow || 6;
-        this.slideStep = options.slideStep || 3;
+        this.slideStep = options.slideStep || 1; // Changed to 1 for smoother infinite scroll
         this.hasViewAll = options.hasViewAll || false;
+        this.isTransitioning = false;
+        this.autoScrollInterval = null;
+        this.isHovered = false;
         
         this.init();
     }
@@ -20,7 +23,8 @@ class ProductCarousel {
     init() {
         this.render();
         this.bindEvents();
-        this.updateNavigation();
+        this.startAutoScroll();
+        this.handleResize();
     }
 
     render() {
@@ -48,7 +52,7 @@ class ProductCarousel {
                         </button>
                     </div>
                     <div class="products-track">
-                        ${this.products.map(product => this.renderProduct(product)).join('')}
+                        ${this.createInfiniteLoop().map(product => this.renderProduct(product)).join('')}
                     </div>
                 </div>
             </div>
@@ -97,68 +101,327 @@ class ProductCarousel {
                (hasHalfStar ? '☆' : '') + 
                '☆'.repeat(emptyStars);
     }
+    
+    createInfiniteLoop() {
+        // Create clones for infinite loop
+        const cloneCount = this.itemsToShow;
+        const frontClones = [];
+        const backClones = [];
+        
+        // Create clones at the end (for going forward)
+        for (let i = 0; i < cloneCount; i++) {
+            frontClones.push({
+                ...this.products[i],
+                id: `${this.products[i].id}-clone-front-${i}`,
+                isClone: true
+            });
+        }
+        
+        // Create clones at the beginning (for going backward)
+        for (let i = this.products.length - cloneCount; i < this.products.length; i++) {
+            backClones.push({
+                ...this.products[i],
+                id: `${this.products[i].id}-clone-back-${i}`,
+                isClone: true
+            });
+        }
+        
+        return [...backClones, ...this.products, ...frontClones];
+    }
 
     bindEvents() {
         const prevBtn = document.querySelector(`[data-carousel="${this.containerId}"].prev-btn`);
         const nextBtn = document.querySelector(`[data-carousel="${this.containerId}"].next-btn`);
+        const container = document.getElementById(this.containerId);
         
         prevBtn?.addEventListener('click', () => this.prev());
         nextBtn?.addEventListener('click', () => this.next());
+        
+        // Mouse hover events for auto-scroll
+        if (container) {
+            container.addEventListener('mouseenter', () => {
+                this.isHovered = true;
+                this.stopAutoScroll();
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                this.isHovered = false;
+                this.startAutoScroll();
+            });
+        }
+        
+        // Set initial position to show original items (skip back clones)
+        this.currentIndex = this.itemsToShow;
+        this.updatePosition(false);
     }
 
     prev() {
-        if (this.currentIndex > 0) {
-            this.currentIndex = Math.max(0, this.currentIndex - this.slideStep);
-            this.updateCarousel();
-        }
+        if (this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        this.currentIndex -= this.slideStep;
+        this.updatePosition(true);
+        this.checkInfiniteLoop();
+        
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 400);
     }
 
     next() {
-        const maxIndex = Math.max(0, this.products.length - this.itemsToShow);
-        if (this.currentIndex < maxIndex) {
-            this.currentIndex = Math.min(maxIndex, this.currentIndex + this.slideStep);
-            this.updateCarousel();
-        }
-    }
-
-    updateCarousel() {
-        const track = document.querySelector(`#${this.containerId} .products-track`);
-        if (track) {
-            const cardWidth = track.children[0]?.offsetWidth || 0;
-            const gap = 15;
-            const translateX = -(this.currentIndex * (cardWidth + gap));
-            track.style.transform = `translateX(${translateX}px)`;
-        }
-        this.updateNavigation();
-    }
-
-    updateNavigation() {
-        const prevBtn = document.querySelector(`[data-carousel="${this.containerId}"].prev-btn`);
-        const nextBtn = document.querySelector(`[data-carousel="${this.containerId}"].next-btn`);
+        if (this.isTransitioning) return;
         
-        if (prevBtn && nextBtn) {
-            prevBtn.disabled = this.currentIndex <= 0;
-            nextBtn.disabled = this.currentIndex >= Math.max(0, this.products.length - this.itemsToShow);
+        this.isTransitioning = true;
+        this.currentIndex += this.slideStep;
+        this.updatePosition(true);
+        this.checkInfiniteLoop();
+        
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 400);
+    }
+
+    updatePosition(animate = true) {
+        const track = document.querySelector(`#${this.containerId} .products-track`);
+        if (!track) return;
+        
+        const cardWidth = track.children[0]?.offsetWidth || 0;
+        const gap = 15;
+        const translateX = -(this.currentIndex * (cardWidth + gap));
+        
+        if (animate) {
+            track.style.transition = 'transform 0.4s ease';
+        } else {
+            track.style.transition = 'none';
         }
+        
+        track.style.transform = `translateX(${translateX}px)`;
+        
+        // Reset transition after animation
+        if (animate) {
+            setTimeout(() => {
+                track.style.transition = 'transform 0.4s ease';
+            }, 400);
+        }
+    }
+    
+    checkInfiniteLoop() {
+        const track = document.querySelector(`#${this.containerId} .products-track`);
+        if (!track) return;
+        
+        const totalItems = track.children.length;
+        const cloneCount = this.itemsToShow;
+        
+        // If we're at the end clones, jump to the beginning of original items
+        if (this.currentIndex >= totalItems - cloneCount) {
+            setTimeout(() => {
+                this.currentIndex = cloneCount;
+                this.updatePosition(false);
+            }, 400);
+        }
+        
+        // If we're at the beginning clones, jump to the end of original items
+        if (this.currentIndex <= 0) {
+            setTimeout(() => {
+                this.currentIndex = totalItems - cloneCount * 2;
+                this.updatePosition(false);
+            }, 400);
+        }
+    }
+    
+    startAutoScroll() {
+        if (this.isHovered) return;
+        
+        this.autoScrollInterval = setInterval(() => {
+            if (this.isHovered || this.isTransitioning) return;
+            
+            this.next();
+        }, 4000);
+    }
+    
+    stopAutoScroll() {
+        clearInterval(this.autoScrollInterval);
+    }
+    
+    handleResize() {
+        window.addEventListener('resize', () => {
+            this.updatePosition(false);
+        });
     }
 
     updateProducts(newProducts, newTitle = null) {
         this.products = newProducts;
         if (newTitle) this.title = newTitle;
-        this.currentIndex = 0;
+        this.currentIndex = this.itemsToShow; // Reset to show original items
         this.render();
         this.bindEvents();
-        this.updateNavigation();
     }
+}
+
+const imageFiles = [
+    'assets/images/trending & recommending/11.jpg (1).png',
+    'assets/images/trending & recommending/14.jpg.png',
+    'assets/images/trending & recommending/35.jpg (1).png',
+    'assets/images/trending & recommending/57.jpg.png',
+    'assets/images/trending & recommending/69.jpg.png',
+    'assets/images/trending & recommending/8.jpg.png'
+];
+
+function assignImagesToProducts(products) {
+    return products.map((product, idx) => ({
+        ...product,
+        image: imageFiles[idx % imageFiles.length]
+    }));
+}
+
+const specialsImageFiles = [
+    'assets/images/special picked for you/California Gold Nutrition, Gold C™, USP Grade Vitamin C, 1,000 mg, 240 Veggie Capsules.png',
+    'assets/images/special picked for you/California Gold Nutrition, Omega 800 Ultra-Concentrated Omega-3 Fish Oil, kd-pur Triglyceride Form, 30 Fish Gelatin Softgels (1,000 mg per Softgel).png',
+    'assets/images/special picked for you/California Gold Nutrition, Omega-3 Premium Fish Oil, 100 Fish Gelatin Softgels (1,100 mg per Softgel).png',
+    'assets/images/special picked for you/California Gold Nutrition, Omega-3, Premium Fish Oil, 240 Fish Gelatin Softgels.png',
+    'assets/images/special picked for you/California Gold Nutrition, Sport, Creatine Monohydrate, Unflavored, 1 lb (454 g).png',
+    'assets/images/special picked for you/NOW Foods, Omega-3 Fish Oil, 200 Softgels.png'
+];
+
+function assignImagesToSpecials(products) {
+    return products.map((product, idx) => ({
+        ...product,
+        image: specialsImageFiles[idx % specialsImageFiles.length]
+    }));
 }
 
 // Product data for different sections
 const PRODUCT_DATA = {
-    recommended: [
+    bestSellers: [
+        {
+            id: 'bs1',
+            title: 'California Gold Nutrition, LactoBif® 30 Probiotics, 30 Billion CFU, 60 Veggie Capsules',
+            image: 'assets/images/best seller/California Gold Nutrition, LactoBif® 30 Probiotics, 30 Billion CFU, 60 Veggie Capsules.png',
+            rating: 4.8,
+            reviewCount: 34916,
+            currentPrice: 'EGP1,202.22',
+            originalPrice: null,
+            badge: null
+        },
+        {
+            id: 'bs2',
+            title: 'California Gold Nutrition, Omega-3 Premium Fish Oil, 100 Fish Gelatin Softgels (1,100 mg per Softgel)',
+            image: 'assets/images/best seller/California Gold Nutrition, Omega-3 Premium Fish Oil, 100 Fish Gelatin Softgels (1,100 mg per Softgel).png',
+            rating: 4.6,
+            reviewCount: 4394,
+            currentPrice: 'EGP591.06',
+            originalPrice: 'EGP405.37',
+            badge: null
+        },
+        {
+            id: 'bs3',
+            title: 'Doctor\'s Best, High Absorption Magnesium, 240 Tablets (100 mg Per Tablet)',
+            image: 'assets/images/best seller/Doctor\'s Best, High Absorption Magnesium, 240 Tablets (100 mg Per Tablet).png',
+            rating: 4.7,
+            reviewCount: 35215,
+            currentPrice: 'EGP1,146.94',
+            originalPrice: null,
+            badge: null
+        },
+        {
+            id: 'bs4',
+            title: 'California Gold Nutrition, Gold C™, USP Grade Vitamin C, 1,000 mg, 60 Veggie Capsules',
+            image: 'assets/images/best seller/California Gold Nutrition, Gold C™, USP Grade Vitamin C, 1,000 mg, 60 Veggie Capsules.png',
+            rating: 4.8,
+            reviewCount: 35215,
+            currentPrice: 'EGP926.12',
+            originalPrice: null,
+            badge: null
+        },
+        {
+            id: 'bs5',
+            title: 'Life Extension, BioActive Complete B-Complex, 60 Vegetarian Capsules',
+            image: 'assets/images/best seller/Life Extension, BioActive Complete B-Complex, 60 Vegetarian Capsules.png',
+            rating: 4.6,
+            reviewCount: 91302,
+            currentPrice: 'EGP564.62',
+            originalPrice: null,
+            badge: null
+        },
+        {
+            id: 'bs6',
+            title: 'California Gold Nutrition, CollagenUP®, Hydrolyzed Marine Collagen Peptides with Hyaluronic Acid and Vitamin C, Unflavored, 7.26 oz (206 g)',
+            image: 'assets/images/best seller/California Gold Nutrition, CollagenUP®, Hydrolyzed Marine Collagen Peptides with Hyaluronic Acid and Vitamin C, Unflavored, 7.26 oz (206 g).png',
+            rating: 4.5,
+            reviewCount: 6341,
+            currentPrice: 'EGP1,011.65',
+            originalPrice: null,
+            badge: null
+        }
+    ],
+    
+    newArrivals: [
+        {
+            id: 'na1',
+            title: 'Bliss, Fab Foaming 2-In-1 Cleanser & Exfoliator, 6.4 fl oz (190 ml)',
+            image: 'assets/images/new arrivals/Bliss, Fab Foaming 2-In-1 Cleanser & Exfoliator, 6.4 fl oz (190 ml).png',
+            rating: 4.2,
+            reviewCount: 0,
+            currentPrice: 'EGP846.08',
+            originalPrice: 'EGP940.09',
+            badge: 'New'
+        },
+        {
+            id: 'na2',
+            title: 'Molvany, Artichoke Soothing Affect Pore Toner Pad, 70 Pads, 5.64 oz (160 g)',
+            image: 'assets/images/new arrivals/Molvany, Artichoke Soothing Affect Pore Toner Pad, 70 Pads, 5.64 oz (160 g).png',
+            rating: 4.3,
+            reviewCount: 0,
+            currentPrice: 'EGP1,287.87',
+            originalPrice: 'EGP1,430.97',
+            badge: 'New'
+        },
+        {
+            id: 'na3',
+            title: 'Molvany, Artichoke Calming Care Soothing Cream, 3.38 fl oz (100 ml)',
+            image: 'assets/images/new arrivals/Molvany, Artichoke Calming Care Soothing Cream , 3.38 fl oz (100 ml).png',
+            rating: 4.1,
+            reviewCount: 0,
+            currentPrice: 'EGP1,230.39',
+            originalPrice: 'EGP1,367.10',
+            badge: 'New'
+        },
+        {
+            id: 'na4',
+            title: 'Bliss, Glow & Hydrate Nourishing Day Serum, 1 fl oz (30 ml)',
+            image: 'assets/images/new arrivals/Bliss, Glow & Hydrate Nourishing Day Serum, 1 fl oz (30 ml).png',
+            rating: 4.4,
+            reviewCount: 0,
+            currentPrice: 'EGP1,325.55',
+            originalPrice: 'EGP1,472.83',
+            badge: 'New'
+        },
+        {
+            id: 'na5',
+            title: 'Bliss, Youth Got This™, Pure Retinol Moisturizer, 1.7 fl oz (50 ml)',
+            image: 'assets/images/new arrivals/Bliss, Youth Got This™, Pure Retinol Moisturizer, 1.7 fl oz (50 ml).png',
+            rating: 4.3,
+            reviewCount: 0,
+            currentPrice: 'EGP1,236.75',
+            originalPrice: 'EGP1,374.17',
+            badge: 'New'
+        },
+        {
+            id: 'na6',
+            title: 'JOI, Oat Milk Creamer, Original, 10 Packets, 0.42 oz (12 g) Each',
+            image: 'assets/images/new arrivals/JOI, Oat Milk Creamer, Original, 10 Packets, 0.42 oz (12 g) Each.png',
+            rating: 4.0,
+            reviewCount: 0,
+            currentPrice: 'EGP800.61',
+            originalPrice: 'EGP889.57',
+            badge: 'New'
+        }
+    ],
+    
+    recommended: assignImagesToProducts([
         {
             id: 1,
             title: "Wild by Nature, Whole Food Alpha Plus, Blueberry, 13 Packets",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Wild+Nature",
             rating: 5,
             reviewCount: 1,
             currentPrice: "EGP142.07",
@@ -168,7 +431,6 @@ const PRODUCT_DATA = {
         {
             id: 2,
             title: "Aura Cacia, Spot Treatment Clear Skin, Tea Tree Oil, 0.5 fl oz (15 ml)",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Aura+Cacia",
             rating: 4,
             reviewCount: 34,
             currentPrice: "EGP86.36",
@@ -178,7 +440,6 @@ const PRODUCT_DATA = {
         {
             id: 3,
             title: "All-1, Anti-Cavity Fluoride Toothpaste, Mint, 5 oz (142 g)",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=All-1",
             rating: 4,
             reviewCount: 44,
             currentPrice: "EGP54.14",
@@ -188,7 +449,6 @@ const PRODUCT_DATA = {
         {
             id: 4,
             title: "Jarrow Formulas, Ashwagandha, 300 mg, 120 Veggie Caps",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Jarrow",
             rating: 5,
             reviewCount: 1012,
             currentPrice: "EGP113.18",
@@ -198,7 +458,6 @@ const PRODUCT_DATA = {
         {
             id: 5,
             title: "21st Century, Glucosamine Chondroitin, 200 mg, 120 Easy to Swallow Capsules",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=21st+Century",
             rating: 4,
             reviewCount: 174,
             currentPrice: "EGP184.74",
@@ -208,7 +467,6 @@ const PRODUCT_DATA = {
         {
             id: 6,
             title: "NOW Foods, C-1000, With 100 mg of Bioflavonoids, 100 Tablets",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=NOW+Foods",
             rating: 5,
             reviewCount: 2031,
             currentPrice: "EGP86.51",
@@ -218,7 +476,6 @@ const PRODUCT_DATA = {
         {
             id: 13,
             title: "Extra Product for Carousel Testing 1",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Extra+1",
             rating: 4.5,
             reviewCount: 567,
             currentPrice: "EGP299.99",
@@ -228,20 +485,18 @@ const PRODUCT_DATA = {
         {
             id: 14,
             title: "Extra Product for Carousel Testing 2",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Extra+2",
             rating: 4.2,
             reviewCount: 234,
             currentPrice: "EGP199.99",
             originalPrice: "EGP249.99",
             badge: "New"
         }
-    ],
+    ]),
     
-    specials: [
+    specials: assignImagesToSpecials([
         {
             id: 7,
             title: "California Gold Nutrition, Omega-3 Premium Fish Oil, 100 Fish Gelatin Softgels",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=CGN+Omega",
             rating: 5,
             reviewCount: 41341,
             currentPrice: "EGP591.06",
@@ -251,7 +506,6 @@ const PRODUCT_DATA = {
         {
             id: 8,
             title: "California Gold Nutrition, Gold C, USP Grade Vitamin C, 500 mg, 240 Veggie Caps",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=CGN+Gold+C",
             rating: 5,
             reviewCount: 19219,
             currentPrice: "EGP747.10",
@@ -261,7 +515,6 @@ const PRODUCT_DATA = {
         {
             id: 9,
             title: "California Gold Nutrition, Omega-3, Premium Fish Oil, 240 Fish Gelatin Softgels",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=CGN+Omega+240",
             rating: 5,
             reviewCount: 41517,
             currentPrice: "EGP1,289.64",
@@ -271,7 +524,6 @@ const PRODUCT_DATA = {
         {
             id: 10,
             title: "California Gold Nutrition, Sport, Creatine Monohydrate, Unflavored, 16 oz (454 g)",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=CGN+Creatine",
             rating: 5,
             reviewCount: 1307,
             currentPrice: "EGP936.11",
@@ -281,7 +533,6 @@ const PRODUCT_DATA = {
         {
             id: 11,
             title: "California Gold Nutrition, Omega 800 Ultra-Concentrated Omega-3",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=CGN+800",
             rating: 5,
             reviewCount: 11647,
             currentPrice: "EGP419.53",
@@ -291,7 +542,6 @@ const PRODUCT_DATA = {
         {
             id: 12,
             title: "NOW Foods, Omega-3 Fish Oil, Lemon Flavored, 16.9 fl oz (500 ml)",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=NOW+Omega",
             rating: 5,
             reviewCount: 10169,
             currentPrice: "EGP688.81",
@@ -301,7 +551,6 @@ const PRODUCT_DATA = {
         {
             id: 15,
             title: "Extra Special Product for Carousel 1",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Special+1",
             rating: 4.8,
             reviewCount: 123,
             currentPrice: "EGP399.99",
@@ -311,20 +560,18 @@ const PRODUCT_DATA = {
         {
             id: 16,
             title: "Extra Special Product for Carousel 2",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Special+2",
             rating: 4.9,
             reviewCount: 567,
             currentPrice: "EGP799.99",
             originalPrice: null,
             badge: null
         }
-    ],
+    ]),
     
-    trending: [
+    trending: assignImagesToProducts([
         {
             id: 17,
             title: "Mist by Nature Witch Hazel, Alcohol Free, Unscented, 8 fl oz (237 ml)",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Witch+Hazel",
             rating: 4.3,
             reviewCount: 1285,
             currentPrice: "EGP412.87",
@@ -334,7 +581,6 @@ const PRODUCT_DATA = {
         {
             id: 18,
             title: "Acti-V Dark Spot Correcting Glow Serum, 1.69 fl oz (50 ml)",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Dark+Spot+Serum",
             rating: 4.5,
             reviewCount: 967,
             currentPrice: "EGP969.36",
@@ -344,7 +590,6 @@ const PRODUCT_DATA = {
         {
             id: 19,
             title: "Act, Anticavity Fluoride Mouthwash, Alcohol Free, Mint, 18 fl oz (532 ml)",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=ACT+Mouthwash",
             rating: 4.7,
             reviewCount: 2341,
             currentPrice: "EGP541.66",
@@ -354,7 +599,6 @@ const PRODUCT_DATA = {
         {
             id: 20,
             title: "Avalon Organics, Thickening Shampoo, Biotin B-Complex, 14 fl oz",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Avalon+Shampoo",
             rating: 4.2,
             reviewCount: 1543,
             currentPrice: "EGP715.18",
@@ -364,7 +608,6 @@ const PRODUCT_DATA = {
         {
             id: 21,
             title: "21st Century, Potassium Gluconate, 595 mg, 110 Tablets",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=Potassium",
             rating: 4.4,
             reviewCount: 876,
             currentPrice: "EGP188.94",
@@ -374,14 +617,13 @@ const PRODUCT_DATA = {
         {
             id: 22,
             title: "NOW Foods, C-1000, With Rose Hips and Bioflavonoids, 100 Tablets",
-            image: "https://via.placeholder.com/150x150/ffffff/cccccc?text=NOW+Vitamin+C",
             rating: 4.8,
             reviewCount: 3214,
             currentPrice: "EGP536.51",
             originalPrice: null,
             badge: null
         }
-    ]
+    ])
 };
 
 // Category data - Main shop by category section
@@ -525,8 +767,8 @@ const CATEGORY_ICONS = {
 
 // Filter items for the enhanced category section
 const FILTER_ITEMS = [
-    'Vitamins', 'GLP-1 Support', 'Immune Support', 'Heart', 
-    'Herbs', 'Bone, Joint & Cartilage', 'Minerals', 'Digestive Support'
+    'Supplements', 'Bath & Personal Care', 'Beauty', 'Sports', 
+    'Grocery', 'Kids & Babies', 'Pets', 'Home'
 ];
 
 // Enhanced category section generator
@@ -694,7 +936,8 @@ function renderProductSections() {
     const recommendedCarousel = new ProductCarousel(
         'recommendedProducts', 
         'Recommended for you', 
-        PRODUCT_DATA.recommended
+        PRODUCT_DATA.recommended,
+        { hasViewAll: true }
     );
     
     const specialsCarousel = new ProductCarousel(
@@ -704,10 +947,25 @@ function renderProductSections() {
         { hasViewAll: true }
     );
     
+    const bestSellersCarousel = new ProductCarousel(
+        'bestSellersProducts', 
+        'Best sellers', 
+        PRODUCT_DATA.bestSellers,
+        { hasViewAll: true }
+    );
+    
+    const newArrivalsCarousel = new ProductCarousel(
+        'newArrivalsProducts', 
+        'New arrivals', 
+        PRODUCT_DATA.newArrivals,
+        { hasViewAll: true }
+    );
+    
     const trendingCarousel = new ProductCarousel(
         'trendingProducts', 
         'Trending now', 
-        PRODUCT_DATA.trending
+        PRODUCT_DATA.trending,
+        { hasViewAll: true }
     );
 }
 
@@ -897,4 +1155,4 @@ if (typeof module !== 'undefined' && module.exports) {
         showAddToCartNotification,
         updateCartCounter
     };
-} 
+}
