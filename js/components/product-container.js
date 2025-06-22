@@ -182,7 +182,10 @@ class ProductContainerSlider {
                     <span class="live-badge">LIVE</span>
                     <i class="fas fa-info-circle info-icon"></i>
                 </div>
-                <div class="notification-badge">8</div>
+                <div class="header-right">
+                    <a href="#" class="product-section__view-all">View All</a>
+                    <div class="notification-badge">8</div>
+                </div>
             </div>
         `;
         

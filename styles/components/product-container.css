@@ -39,6 +39,12 @@
     padding: 0 20px;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .header-left {
     display: flex;
     align-items: center;
@@ -50,6 +56,7 @@
     font-weight: 700;
     font-size: 1.2rem;
     margin: 0;
+    text-align: left;
 }
 
 .live-badge {

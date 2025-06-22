@@ -646,13 +646,17 @@ body {
 .section-header {
     margin-bottom: 25px;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .section-title {
     font-size: 18px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 0;
+    text-align: left;
 }
 
 .section-subtitle {

@@ -306,8 +306,9 @@ class SpecialBrandsSlider {
                 <div class="slider-container">
                     <div class="section-header">
                         <h2 class="section-title">Special Brands</h2>
-                        <p class="section-subtitle">Discover premium brands and exclusive offers</p>
+                        <a href="#" class="product-section__view-all">View All</a>
                     </div>
+                    <p class="section-subtitle">Discover premium brands and exclusive offers</p>
                     
                     <div class="specials-container" id="specialsContainer">
                         <div class="specials-nav-btn prev" id="prevBtn"></div>

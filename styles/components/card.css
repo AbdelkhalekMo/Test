@@ -149,10 +149,11 @@
     color: #333;
     margin: 0;
     padding: 0;
+    text-align: left;
 }
 
 .product-section__view-all {
-    background-color: #6DB33F;
+    background-color: #2C7500;
     color: #fff;
     text-decoration: none;
     font-weight: 600;
@@ -164,11 +165,11 @@
 }
 
 .product-section__view-all:hover {
-    background-color: #5A9A35;
+    background-color: #1e5300;
     color: #fff;
     text-decoration: none;
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(109, 179, 63, 0.3);
+    box-shadow: 0 2px 8px rgba(44, 117, 0, 0.3);
 }
 
 /* Product Slider */
@@ -888,10 +889,11 @@
     font-weight: 600;
     color: #333;
     margin: 0;
+    text-align: left;
 }
 
 .product-section__view-all {
-    background-color: #6DB33F;
+    background-color: #2C7500;
     color: #fff;
     text-decoration: none;
     font-weight: 600;
@@ -903,11 +905,11 @@
 }
 
 .product-section__view-all:hover {
-    background-color: #5A9A35;
+    background-color: #1e5300;
     color: #fff;
     text-decoration: none;
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(109, 179, 63, 0.3);
+    box-shadow: 0 2px 8px rgba(44, 117, 0, 0.3);
 }
 
 .carousel-nav {

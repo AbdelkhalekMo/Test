@@ -32,7 +32,10 @@ class ReusableProductCarousel {
         const carouselHTML = `
             <div class="carousel-section" style="background-color: ${this.backgroundColor}; padding: 40px 0; width: 100%; margin: 20px 0;">
                 <div class="carousel-container" style="max-width: 1200px; margin: 0 auto; position: relative; padding: 0 20px;">
-                    <h3 class="mb-4" style="text-align: center; font-size: 28px; font-weight: 700; color: #333; margin-bottom: 30px;">${this.title}</h3>
+                    <div class="carousel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                        <h3 style="text-align: left; font-size: 28px; font-weight: 700; color: #333; margin: 0;">${this.title}</h3>
+                        <a href="#" class="product-section__view-all">View All</a>
+                    </div>
                     <div class="carousel-content" style="display: flex; align-items: center; justify-content: space-between;">
                         <div class="carousel-arrow carousel-arrow-prev" style="background: linear-gradient(135deg, #6DB33F 0%, #2C7500 100%); border: none; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 50; box-shadow: 0 4px 15px rgba(109, 179, 63, 0.3);">
                             <i class="fas fa-chevron-left" style="font-size: 18px; color: white;"></i>
