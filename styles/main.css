@@ -627,4 +627,248 @@ body {
     .selected-for-you-arrow i {
         font-size: 7px;
     }
+}
+
+/* Special Brands Section Styles */
+.specials-section {
+    background-color: #f8f9fa;
+    padding: 30px 0;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.slider-container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.section-header {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.section-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.specials-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.specials-wrapper {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    gap: 8px; /* Added small gaps between cards */
+}
+
+.special-item {
+    background: white;
+    border-radius: 8px;
+    min-width: calc((100% - 24px) / 4); /* Adjusted for gaps */
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #e9ecef;
+}
+
+.special-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.special-item img {
+    max-width: 100%;
+    max-height: 50px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.special-item:hover img {
+    transform: scale(1.05);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #28a745;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.specials-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #4CAF50;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    color: white;
+}
+
+.specials-nav-btn:hover {
+    background: #45a049;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.specials-nav-btn.prev {
+    left: 10px;
+}
+
+.specials-nav-btn.next {
+    right: 10px;
+}
+
+.specials-nav-btn:before {
+    content: '';
+    width: 0;
+    height: 0;
+}
+
+.specials-nav-btn.prev:before {
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 8px solid currentColor;
+    margin-right: 2px;
+}
+
+.specials-nav-btn.next:before {
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid currentColor;
+    margin-left: 2px;
+}
+
+/* Responsive adjustments for Special Brands */
+@media (max-width: 992px) {
+    .special-item {
+        min-width: calc((100% - 16px) / 3); /* Adjusted for gaps */
+    }
+    
+    .slider-container {
+        width: 85%;
+    }
+    
+    .specials-wrapper {
+        gap: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .special-item {
+        min-width: calc((100% - 8px) / 2); /* Adjusted for gaps */
+        height: 70px;
+    }
+    
+    .slider-container {
+        width: 90%;
+    }
+    
+    .specials-nav-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .specials-nav-btn.prev {
+        left: -18px;
+    }
+    
+    .specials-nav-btn.next {
+        right: -18px;
+    }
+    
+    .specials-wrapper {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 576px) {
+    .special-item {
+        min-width: 100%;
+        height: 60px;
+    }
+    
+    .slider-container {
+        width: 95%;
+    }
+    
+    .specials-nav-btn.prev {
+        left: -15px;
+    }
+    
+    .specials-nav-btn.next {
+        right: -15px;
+    }
+    
+    .specials-wrapper {
+        gap: 0;
+    }
+}
+
+/* Animation classes for Special Brands */
+.slide-in {
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #4CAF50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 } 

@@ -6,8 +6,8 @@
 class HeroSlider {
     constructor() {
         this.slides = document.querySelectorAll('.slide');
-        this.prevBtn = document.querySelector('.nav-btn.prev');
-        this.nextBtn = document.querySelector('.nav-btn.next');
+        this.prevBtn = document.querySelector('.hero-nav-prev');
+        this.nextBtn = document.querySelector('.hero-nav-next');
         this.sectionButtons = document.querySelectorAll('.hero-slider__section[data-slide]');
         this.currentSlide = 0;
         this.slideInterval = null;
@@ -82,7 +82,7 @@ class HeroSlider {
     }
     
     addTouchSupport() {
-        const sliderContainer = document.querySelector('.slider-container');
+        const sliderContainer = document.querySelector('.hero-slider-container');
         if (!sliderContainer) return;
         
         let startX = 0;

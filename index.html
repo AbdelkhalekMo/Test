@@ -231,7 +231,7 @@
         <div class="container-fluid p-0">
             <div class="hero-slider__container position-relative">
                 <!-- Simple Slider Wrapper -->
-                <div class="slider-container">
+                <div class="hero-slider-container" id="heroSliderContainer">
                     <div class="slide active">
                         <img src="assets/images/component 1/component1(first).png" alt="Daily Wellness Drop - 25% Off Fish Oil & Omegas">
                         </div>
@@ -247,8 +247,16 @@
                 </div>
                 
                 <!-- Navigation Arrows -->
-                <button class="nav-btn prev" aria-label="Previous slide"></button>
-                <button class="nav-btn next" aria-label="Next slide"></button>
+                <button class="hero-nav-btn hero-nav-prev" aria-label="Previous slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="hero-nav-btn hero-nav-next" aria-label="Next slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
                 
                 <!-- Section Navigation -->
                 <div class="hero-slider__sections">
@@ -301,6 +309,11 @@
     <!-- Trending Products Carousel -->
     <div id="trendingProducts">
         <!-- Trending products carousel will be rendered here -->
+    </div>
+
+    <!-- Special Brands Section -->
+    <div id="specialBrandsSection">
+        <!-- Special brands section will be rendered here -->
     </div>
 
     <!-- Best Sellers Section -->
@@ -779,6 +792,7 @@
     <script src="js/components/carousel-data.js"></script>
     <script src="js/components/specials-slider.js"></script>
     <script src="js/components/wellness-hub.js"></script>
+    <script src="js/components/special-brands.js"></script>
     <script src="js/components/animations.js"></script>
     <script src="js/main.js"></script>
 

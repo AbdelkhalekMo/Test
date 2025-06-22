@@ -17,6 +17,11 @@ $(document).ready(function() {
     // Initialize enhanced category functionality
     initializeEnhancedCategoryFeatures();
     
+    // Initialize Special Brands section
+    if (typeof generateSpecialBrandsSection === 'function') {
+        generateSpecialBrandsSection();
+    }
+    
     // Initialize smooth scrolling for anchor links
     $('a[href^="#"]').on('click', function(e) {
         e.preventDefault();
