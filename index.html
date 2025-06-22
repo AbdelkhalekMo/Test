@@ -143,78 +143,84 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-2">
-        <div class="container-fluid px-3">
+        <div class="container-fluid">
             <!-- Mobile toggle button -->
             <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <!-- Navbar content -->
+            <!-- Navbar content with 80% width constraint -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="w-100">
-                    <div class="d-lg-flex align-items-center justify-content-between">
-                        <!-- Main Categories -->
-                        <div class="flex-grow-1">
-                            <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-start mb-2 mb-lg-0">
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Supplements</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Sports</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Bath</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Beauty</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Grocery</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Home</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Baby</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-4">
-                                    <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Pets</a>
-                                </li>
-                            </ul>
-                </div>
-                
-                        <!-- Info Links & Special Offers -->
-                        <div class="d-lg-flex">
-                            <!-- Info Links -->
-                            <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-start mb-2 mb-lg-0 me-lg-4">
-                                <li class="nav-item me-2 me-lg-3">
-                                    <a class="nav-link text-muted px-2 py-1" href="#">Brands A-Z</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-3">
-                                    <a class="nav-link text-muted px-2 py-1" href="#">Health Topics</a>
-                                </li>
-                            </ul>
-                            
-                            <!-- Special Offers -->
-                            <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-start mb-0">
-                                <li class="nav-item me-2 me-lg-3">
-                                    <a class="nav-link text-danger fw-semibold px-2 py-1" href="#">Specials</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-3">
-                                    <a class="nav-link text-dark px-2 py-1" href="#">Best Sellers</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-3">
-                                    <a class="nav-link text-dark px-2 py-1" href="#">Try</a>
-                                </li>
-                                <li class="nav-item me-2 me-lg-3">
-                                    <a class="nav-link text-dark px-2 py-1" href="#">New</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-success fw-semibold px-2 py-1" href="#">Wellness Hub</a>
-                                </li>
-                            </ul>
+                <div class="w-100 d-flex justify-content-center">
+                    <div style="width: 80%; max-width: 1200px;">
+                        <div class="d-lg-flex align-items-center justify-content-between">
+                            <!-- Three main groups with equal spacing -->
+                            <div class="navbar-groups-container d-lg-flex w-100 justify-content-between align-items-center">
+                                <!-- Group 1: Main Categories -->
+                                <div class="navbar-group navbar-main-categories">
+                                    <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-start mb-2 mb-lg-0">
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Supplements</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Sports</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Bath</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Beauty</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Grocery</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Home</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Baby</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-semibold text-dark px-2 py-1" href="#">Pets</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Group 2: Info Links -->
+                                <div class="navbar-group navbar-info-links">
+                                    <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-center mb-2 mb-lg-0">
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link text-muted px-2 py-1" href="#">Brands A-Z</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-muted px-2 py-1" href="#">Health Topics</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Group 3: Special Offers -->
+                                <div class="navbar-group navbar-special-offers">
+                                    <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-end mb-0">
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link text-danger fw-semibold px-2 py-1" href="#">Specials</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link text-dark px-2 py-1" href="#">Best Sellers</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link text-dark px-2 py-1" href="#">Try</a>
+                                        </li>
+                                        <li class="nav-item me-2">
+                                            <a class="nav-link text-dark px-2 py-1" href="#">New</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-success fw-semibold px-2 py-1" href="#">Wellness Hub</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -272,16 +278,14 @@
     </section>
 
     <!-- Product Carousel Sections -->
-    <div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
-        <!-- Recommended Products Carousel -->
-        <div id="recommendedProducts">
-            <!-- Recommended products carousel will be rendered here -->
-        </div>
-        
-        <!-- Specials Products Carousel -->
-        <div id="specialsProducts">
-            <!-- Specials products carousel will be rendered here -->
-        </div>
+    <!-- Recommended Products Carousel -->
+    <div id="recommendedProducts">
+        <!-- Recommended products carousel will be rendered here -->
+    </div>
+    
+    <!-- Specials Products Carousel -->
+    <div id="specialsProducts">
+        <!-- Specials products carousel will be rendered here -->
     </div>
     
     <!-- Shop by Category Section -->
@@ -289,49 +293,19 @@
         <!-- Shop by category section will be rendered here -->
     </div>
     
-    <!-- Selected for you Filter Section -->
-    <div id="categorySection">
-        <!-- Selected for you filter section will be rendered here -->
+    <!-- Trending Products Carousel -->
+    <div id="trendingProducts">
+        <!-- Trending products carousel will be rendered here -->
     </div>
-    
-    <!-- Trending Products Carousel (after Selected for you) -->
-    <div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
-        <div id="trendingProducts">
-            <!-- Trending products carousel will be rendered here -->
-        </div>
-    </div>
-
-    <!-- Specials Picked For You Section -->
-    <section class="specials-picked-section">
-        <div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
-            <div class="section-header">
-                <h2 class="section-title">Specials picked for you</h2>
-                <p class="section-subtitle">Offer ends in 8 days, 13 hours</p>
-            </div>
-            
-            <div class="specials-container" id="specialsContainer">
-                <div class="nav-btn prev" id="specialsPrevBtn"></div>
-                <div class="nav-btn next" id="specialsNextBtn"></div>
-                
-                <div class="specials-wrapper" id="specialsWrapper">
-                    <!-- Items will be dynamically inserted here -->
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Best Sellers Section -->
-    <div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
-        <div id="bestSellersProducts">
-            <!-- Best sellers carousel will be rendered here -->
-        </div>
+    <div id="bestSellersProducts">
+        <!-- Best sellers carousel will be rendered here -->
     </div>
     
     <!-- New Arrivals Section -->
-    <div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
-        <div id="newArrivalsProducts">
-            <!-- New arrivals carousel will be rendered here -->
-        </div>
+    <div id="newArrivalsProducts">
+        <!-- New arrivals carousel will be rendered here -->
     </div>
 
     <!-- Why iHerb Section -->
@@ -384,89 +358,104 @@
     </section>
 
     <!-- Product Container Section -->
-    <section class="product-container-section">
-        <div class="container-fluid">
-            <div class="product-container">
-                <div class="container-header">
-                    <div class="header-left">
-                        <h2 class="header-title">iHerb</h2>
-                        <span class="live-badge">LIVE</span>
-                        <i class="fas fa-info-circle info-icon"></i>
-                    </div>
-                    <div class="notification-badge">8</div>
-                </div>
-                
-
-                
-                <!-- Product slider will be generated by JavaScript -->
-            </div>
-        </div>
-    </section>
+    <div id="productContainer">
+        <!-- Product container carousel will be rendered here -->
+    </div>
 
     <!-- Wellness Hub Section -->
     <section class="wellness-section">
-        <div class="wellness-container">
-            <div class="wellness-grid">
-                <div class="wellness-card" onclick="openWellnessArticle('castor-oil')">
-                    <div class="wellness-image-container">
-                        <img src="assets/images/last products section/Castor Oil In Your Belly Button_ Benefits + Side Effects.png" alt="Castor Oil Benefits" class="wellness-image">
-                    </div>
-                    <div class="wellness-content">
-                        <h3 class="wellness-card-title">Castor Oil In Your Belly Button: Benefits + Side Effects</h3>
-                    </div>
-                </div>
-                
-                <div class="wellness-card" onclick="openWellnessArticle('prenatal-supplements')">
-                    <div class="wellness-image-container">
-                        <img src="assets/images/last products section/Prenatal Supplement Safety_ What You Should Know.png" alt="Prenatal Supplement Safety" class="wellness-image">
-                    </div>
-                    <div class="wellness-content">
-                        <h3 class="wellness-card-title">Prenatal Supplement Safety: What You Should Know</h3>
-                    </div>
-                </div>
-                
-                <div class="wellness-card" onclick="openWellnessArticle('polyphenols')">
-                    <div class="wellness-image-container">
-                        <img src="assets/images/last products section/3 Polyphenols + Their Benefits_ Green Tea, Grape Seed, Pine Bark Extract.png" alt="3 Polyphenols Benefits" class="wellness-image">
-                    </div>
-                    <div class="wellness-content">
-                        <h3 class="wellness-card-title">3 Polyphenols + Their Benefits: Green Tea, Grape Seed, Pine Bark Extract</h3>
-                    </div>
-                </div>
-                
-                <div class="wellness-card wellness-hub-link" onclick="openWellnessHub()">
-                    <div class="wellness-image-container" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); display: flex; align-items: center; justify-content: center;">
-                        <div style="color: #333; font-weight: 700; font-size: 1.2rem; text-align: center;">
-                            <div>WELLNESS</div>
-                            <div>HUB</div>
+        <div class="container-fluid" style="background-color: #f8f9fa;">
+            <div class="container">
+                <div class="row justify-content-center py-4">
+                    <div class="col-12">
+                        <div class="row g-3">
+                            <!-- Card 1 -->
+                            <div class="col-lg col-md-4 col-sm-6 col-6">
+                                <div class="wellness-card h-100" onclick="openWellnessArticle('castor-oil')">
+                                    <div class="wellness-image-container">
+                                        <img src="assets/images/last products section/Castor Oil In Your Belly Button_ Benefits + Side Effects.png" alt="Castor Oil Benefits" class="wellness-image">
+                                    </div>
+                                    <div class="wellness-content">
+                                        <h3 class="wellness-card-title">Castor Oil In Your Belly Button: Benefits + Side Effects</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 2 -->
+                            <div class="col-lg col-md-4 col-sm-6 col-6">
+                                <div class="wellness-card h-100" onclick="openWellnessArticle('prenatal-supplements')">
+                                    <div class="wellness-image-container">
+                                        <img src="assets/images/last products section/Prenatal Supplement Safety_ What You Should Know.png" alt="Prenatal Supplement Safety" class="wellness-image">
+                                    </div>
+                                    <div class="wellness-content">
+                                        <h3 class="wellness-card-title">Prenatal Supplement Safety: What You Should Know</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 3 -->
+                            <div class="col-lg col-md-4 col-sm-6 col-6">
+                                <div class="wellness-card h-100" onclick="openWellnessArticle('polyphenols')">
+                                    <div class="wellness-image-container">
+                                        <img src="assets/images/last products section/3 Polyphenols + Their Benefits_ Green Tea, Grape Seed, Pine Bark Extract.png" alt="3 Polyphenols Benefits" class="wellness-image">
+                                    </div>
+                                    <div class="wellness-content">
+                                        <h3 class="wellness-card-title">3 Polyphenols + Their Benefits: Green Tea, Grape Seed, Pine Bark Extract</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 4 - Wellness Hub -->
+                            <div class="col-lg col-md-4 col-sm-6 col-6">
+                                <div class="wellness-card wellness-hub-link h-100" onclick="openWellnessHub()">
+                                    <div class="wellness-image-container" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); display: flex; align-items: center; justify-content: center;">
+                                        <div style="color: #333; font-weight: 700; font-size: 1.2rem; text-align: center;">
+                                            <div>WELLNESS</div>
+                                            <div>HUB</div>
+                                        </div>
+                                    </div>
+                                    <div class="wellness-content">
+                                        <h3 class="wellness-card-title">Explore Wellness Hub</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 5 -->
+                            <div class="col-lg col-md-4 col-sm-6 col-6">
+                                <div class="wellness-card h-100" onclick="openWellnessArticle('collagen-masks')">
+                                    <div class="wellness-image-container">
+                                        <img src="assets/images/last products section/Collagen Face Masks_ Why This Skincare Staple Has Taken Over Your Feed.png" alt="Collagen Face Masks" class="wellness-image">
+                                    </div>
+                                    <div class="wellness-content">
+                                        <h3 class="wellness-card-title">Collagen Face Masks: Why This Skincare Staple Has Taken Over Your Feed</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 6 -->
+                            <div class="col-lg col-md-4 col-sm-6 col-6">
+                                <div class="wellness-card h-100" onclick="openWellnessArticle('beef-organs')">
+                                    <div class="wellness-image-container">
+                                        <img src="assets/images/last products section/Beef Organ Supplements.png" alt="Beef Organ Supplements" class="wellness-image">
+                                    </div>
+                                    <div class="wellness-content">
+                                        <h3 class="wellness-card-title">Beef Organ Supplements</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 7 -->
+                            <div class="col-lg col-md-4 col-sm-6 col-6">
+                                <div class="wellness-card h-100" onclick="openWellnessArticle('electrolyte-supplements')">
+                                    <div class="wellness-image-container">
+                                        <img src="assets/images/last products section/Types Of Electrolyte Supplements + Their Benefits.png" alt="Types Of Electrolyte Supplements" class="wellness-image">
+                                    </div>
+                                    <div class="wellness-content">
+                                        <h3 class="wellness-card-title">Types Of Electrolyte Supplements + Their Benefits</h3>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="wellness-card" onclick="openWellnessArticle('collagen-masks')">
-                    <div class="wellness-image-container">
-                        <img src="assets/images/last products section/Collagen Face Masks_ Why This Skincare Staple Has Taken Over Your Feed.png" alt="Collagen Face Masks" class="wellness-image">
-                    </div>
-                    <div class="wellness-content">
-                        <h3 class="wellness-card-title">Collagen Face Masks: Why This Skincare Staple Has Taken Over Your Feed</h3>
-                    </div>
-                </div>
-                
-                <div class="wellness-card" onclick="openWellnessArticle('beef-organs')">
-                    <div class="wellness-image-container">
-                        <img src="assets/images/last products section/Beef Organ Supplements.png" alt="Beef Organ Supplements" class="wellness-image">
-                    </div>
-                    <div class="wellness-content">
-                        <h3 class="wellness-card-title">Beef Organ Supplements</h3>
-                    </div>
-                </div>
-                
-                <div class="wellness-card" onclick="openWellnessArticle('electrolyte-supplements')">
-                    <div class="wellness-image-container">
-                        <img src="assets/images/last products section/Types Of Electrolyte Supplements + Their Benefits.png" alt="Types Of Electrolyte Supplements" class="wellness-image">
-                    </div>
-                    <div class="wellness-content">
-                        <h3 class="wellness-card-title">Types Of Electrolyte Supplements + Their Benefits</h3>
                     </div>
                 </div>
             </div>
@@ -718,6 +707,59 @@
                 padding: 0.75rem;
             }
         }
+        
+        /* Additional responsive styles */
+        @media (max-width: 768px) {
+            .hero-slider__slide h1 {
+                font-size: 2rem !important;
+                margin-bottom: 15px !important;
+            }
+            
+            .hero-slider__slide p {
+                font-size: 1rem !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .hero-slider__slide .btn {
+                padding: 8px 20px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .hero-slider__container {
+                padding: 20px !important;
+            }
+            
+            .hero-slider__content {
+                padding: 30px 15px !important;
+                margin-bottom: 30px !important;
+                text-align: center !important;
+            }
+        }
+        
+        /* Carousel Section Spacing */
+        #recommendedProducts,
+        #specialsProducts,
+        #shopByCategorySection,
+        #trendingProducts,
+        #bestSellersProducts,
+        #newArrivalsProducts,
+        #productContainer {
+            margin: 15px 0;
+        }
+        
+        /* Ensure proper spacing between carousel sections */
+        .carousel-section {
+            margin: 15px 0 !important;
+        }
+        
+        /* Remove any default margins that might interfere */
+        .carousel-section:first-child {
+            margin-top: 0 !important;
+        }
+        
+        .carousel-section:last-child {
+            margin-bottom: 0 !important;
+        }
     </style>
 
     <!-- Scripts -->
@@ -728,9 +770,8 @@
     <script src="js/components/sales-bar.js"></script>
     <script src="js/components/header.js"></script>
     <script src="js/components/hero-slider.js"></script>
-    <script src="js/components/product-data.js"></script>
-    <script src="js/components/product-slider.js"></script>
-    <script src="js/components/product-container.js"></script>
+    <script src="js/components/product-carousel.js"></script>
+    <script src="js/components/carousel-data.js"></script>
     <script src="js/components/specials-slider.js"></script>
     <script src="js/components/wellness-hub.js"></script>
     <script src="js/components/animations.js"></script>
@@ -738,6 +779,11 @@
 
     <script>
         $(document).ready(function() {
+            // Initialize all product carousels
+            if (typeof initializeAllCarousels === 'function') {
+                initializeAllCarousels();
+            }
+            
             // Newsletter form submission
             $('#newsletter-form').on('submit', function(e) {
                 e.preventDefault();

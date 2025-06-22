@@ -41,18 +41,18 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #333;
     background-color: #fff;
     line-height: 1.6;
     max-width: 100%;
     overflow-x: hidden;
 }
 
-.container-custom {
+.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 20px;
 }
 
 .section {
@@ -296,5 +296,118 @@ body {
         margin-left: 0;
         margin-right: 0;
         width: 100%;
+    }
+}
+
+/* Carousel Section Spacing */
+.carousel-section {
+    margin-bottom: 15px !important;
+}
+
+.carousel-section:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Center all carousel sections */
+#recommendedProducts,
+#trendingProducts,
+#bestSellersProducts,
+#newArrivalsProducts,
+#productContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Center specials section */
+#specialsProducts {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Shop by category section centering */
+#shopByCategorySection {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 40px 0;
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #6DB33F;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5A9A35;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #dee2e6;
+}
+
+.btn-secondary:hover {
+    background-color: #e9ecef;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.p-4 {
+    padding: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 10px;
     }
 } 

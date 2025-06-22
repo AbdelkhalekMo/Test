@@ -148,8 +148,8 @@ class SpecialsSlider {
         const wrapper = document.getElementById('specialsWrapper');
         if (!wrapper) return;
         
-        const itemWidth = wrapper.children[0]?.offsetWidth || 90;
-        const gap = 8;
+        const itemWidth = wrapper.children[0]?.offsetWidth || 120;
+        const gap = 20;
         const totalItemWidth = itemWidth + gap;
         
         if (animate) {
@@ -219,8 +219,6 @@ class SpecialsSlider {
         }, 400);
     }
     
-
-    
     handleItemClick(event) {
         const item = event.currentTarget;
         const itemName = item.dataset.name;
@@ -251,7 +249,10 @@ class SpecialsSlider {
     }
     
     stopAutoScroll() {
-        clearInterval(this.autoScrollInterval);
+        if (this.autoScrollInterval) {
+            clearInterval(this.autoScrollInterval);
+            this.autoScrollInterval = null;
+        }
     }
     
     handleSwipe(startX, endX) {
@@ -284,17 +285,39 @@ class SpecialsSlider {
     }
     
     bindEvents() {
-        // Navigation buttons
+        // Navigation buttons - Updated to use new modern arrows
         const prevBtn = document.getElementById('specialsPrevBtn');
         const nextBtn = document.getElementById('specialsNextBtn');
         const container = document.getElementById('specialsContainer');
         
         if (prevBtn) {
             prevBtn.addEventListener('click', () => this.prevSlide());
+            
+            // Add modern arrow hover effects
+            prevBtn.addEventListener('mouseenter', () => {
+                prevBtn.style.transform = 'translateY(-50%) scale(1.1)';
+                prevBtn.style.boxShadow = '0 6px 20px rgba(109, 179, 63, 0.4)';
+            });
+            
+            prevBtn.addEventListener('mouseleave', () => {
+                prevBtn.style.transform = 'translateY(-50%) scale(1)';
+                prevBtn.style.boxShadow = '0 4px 15px rgba(109, 179, 63, 0.3)';
+            });
         }
         
         if (nextBtn) {
             nextBtn.addEventListener('click', () => this.nextSlide());
+            
+            // Add modern arrow hover effects
+            nextBtn.addEventListener('mouseenter', () => {
+                nextBtn.style.transform = 'translateY(-50%) scale(1.1)';
+                nextBtn.style.boxShadow = '0 6px 20px rgba(109, 179, 63, 0.4)';
+            });
+            
+            nextBtn.addEventListener('mouseleave', () => {
+                nextBtn.style.transform = 'translateY(-50%) scale(1)';
+                nextBtn.style.boxShadow = '0 4px 15px rgba(109, 179, 63, 0.3)';
+            });
         }
         
         // Item clicks
