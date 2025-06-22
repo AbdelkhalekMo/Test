@@ -5,378 +5,124 @@
 
 class HeroSlider {
     constructor() {
-        this.slider = $('.hero-slider');
-        this.slides = $('.hero-slider__slides');
-        this.slideItems = $('.hero-slider__slide');
-        this.prevBtn = $('.hero-slider__arrow--prev');
-        this.nextBtn = $('.hero-slider__arrow--next');
-        this.sections = $('.hero-slider__section');
+        this.slides = document.querySelectorAll('.slide');
+        this.prevBtn = document.querySelector('.nav-btn.prev');
+        this.nextBtn = document.querySelector('.nav-btn.next');
+        this.sectionButtons = document.querySelectorAll('.hero-slider__section[data-slide]');
         this.currentSlide = 0;
-        this.totalSlides = this.slideItems.length;
-        this.autoPlayInterval = null;
-        this.autoPlayDelay = 5000;
-        this.isTransitioning = false;
-        this.touchStartX = 0;
-        this.touchStartY = 0;
-        this.touchEndX = 0;
-        this.touchEndY = 0;
-        this.minSwipeDistance = 50;
+        this.slideInterval = null;
         
         this.init();
     }
     
     init() {
-        if (this.slideItems.length === 0) {
-            return;
-        }
+        // Navigation button event listeners
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
         
-        // Ensure initial state is set correctly
-        this.slideItems.removeClass('hero-slider__slide--active');
-        this.slideItems.eq(0).addClass('hero-slider__slide--active');
-        this.sections.removeClass('hero-slider__section--active');
-        this.sections.filter('[data-slide="0"]').addClass('hero-slider__section--active');
+        // Section button event listeners
+        this.sectionButtons.forEach((button, index) => {
+            button.addEventListener('click', () => this.goToSlide(index));
+        });
         
-        this.bindEvents();
-        this.updateSlidePosition();
+        // Auto-slide and hover events
+        this.startAutoSlide();
+        this.addHoverEvents();
+        
+        // Touch/swipe support
         this.addTouchSupport();
-        this.addKeyboardSupport();
-        this.makeResponsive();
-        
-        // Start auto-play after a short delay to ensure everything is ready
-        setTimeout(() => {
-            this.startAutoPlay();
-        }, 100);
     }
     
-    bindEvents() {
-        // Arrow navigation
-        this.prevBtn.on('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this.prevSlide();
-        });
+    showSlide(index) {
+        // Remove active class from all slides
+        this.slides.forEach(slide => slide.classList.remove('active'));
         
-        this.nextBtn.on('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this.nextSlide();
-        });
+        // Remove active class from all section buttons
+        this.sectionButtons.forEach(button => button.classList.remove('hero-slider__section--active'));
         
-        // Section navigation
-        this.sections.on('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const $section = $(e.currentTarget);
-            
-            // Handle "SEE ALL" section differently
-            if ($section.hasClass('hero-slider__section--see-all')) {
-                return;
-            }
-            
-            const slideIndex = parseInt($section.data('slide'));
-            
-            if (!isNaN(slideIndex) && slideIndex >= 0 && slideIndex < this.totalSlides) {
-                this.goToSlide(slideIndex);
-            }
-        });
+        // Add active class to current slide and section button
+        this.slides[index].classList.add('active');
+        if (this.sectionButtons[index]) {
+            this.sectionButtons[index].classList.add('hero-slider__section--active');
+        }
         
-        // Pause on hover
-        this.slider.on('mouseenter', () => {
-            this.pauseAutoPlay();
-        });
-        
-        this.slider.on('mouseleave', () => {
-            this.startAutoPlay();
-        });
-        
-        // Handle window resize
-        $(window).on('resize', () => {
-            this.makeResponsive();
-            this.updateSlidePosition();
-        });
-        
-        // Pause when page is not visible
-        $(document).on('visibilitychange', () => {
-            if (document.hidden) {
-                this.pauseAutoPlay();
-            } else {
-                this.startAutoPlay();
-            }
-        });
+        this.currentSlide = index;
+    }
+    
+    nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.showSlide(this.currentSlide);
+    }
+    
+    prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.showSlide(this.currentSlide);
+    }
+    
+    goToSlide(index) {
+        if (index >= 0 && index < this.slides.length) {
+            this.showSlide(index);
+        }
+    }
+    
+    startAutoSlide() {
+        this.slideInterval = setInterval(() => this.nextSlide(), 4000);
+    }
+    
+    stopAutoSlide() {
+        clearInterval(this.slideInterval);
+    }
+    
+    addHoverEvents() {
+        const slider = document.querySelector('.hero-slider');
+        if (slider) {
+            slider.addEventListener('mouseenter', () => this.stopAutoSlide());
+            slider.addEventListener('mouseleave', () => this.startAutoSlide());
+        }
     }
     
     addTouchSupport() {
-        // Touch events for mobile swipe
-        this.slider.on('touchstart', (e) => {
-            this.touchStartX = e.originalEvent.touches[0].clientX;
-            this.touchStartY = e.originalEvent.touches[0].clientY;
-            this.pauseAutoPlay();
+        const sliderContainer = document.querySelector('.slider-container');
+        if (!sliderContainer) return;
+        
+        let startX = 0;
+        let endX = 0;
+        
+        sliderContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
         });
         
-        this.slider.on('touchmove', (e) => {
-            // Prevent scrolling during horizontal swipe
-            const touchX = e.originalEvent.touches[0].clientX;
-            const touchY = e.originalEvent.touches[0].clientY;
-            const diffX = Math.abs(touchX - this.touchStartX);
-            const diffY = Math.abs(touchY - this.touchStartY);
-            
-            if (diffX > diffY && diffX > 10) {
-                e.preventDefault();
-            }
+        sliderContainer.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            this.handleSwipe();
         });
         
-        this.slider.on('touchend', (e) => {
-            if (e.originalEvent.changedTouches && e.originalEvent.changedTouches.length > 0) {
-                this.touchEndX = e.originalEvent.changedTouches[0].clientX;
-                this.touchEndY = e.originalEvent.changedTouches[0].clientY;
-                this.handleSwipe();
-            }
-            this.startAutoPlay();
-        });
-        
-        // Handle section navigation touch scrolling
-        const sectionsContainer = $('.hero-slider__sections');
-        if (sectionsContainer.length) {
-            sectionsContainer.on('touchstart', (e) => {
-                e.stopPropagation();
-            });
-        }
-    }
-    
-    addKeyboardSupport() {
-        // Keyboard navigation
-        $(document).on('keydown', (e) => {
-            if (!this.slider.is(':visible')) return;
-            
-            switch(e.key) {
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    this.prevSlide();
-                    break;
-                case 'ArrowRight':
-                    e.preventDefault();
-                    this.nextSlide();
-                    break;
-                case ' ': // Spacebar
-                    e.preventDefault();
-                    this.isAutoPlaying() ? this.pauseAutoPlay() : this.startAutoPlay();
-                    break;
-            }
-        });
+        // Prevent default touch behavior to avoid conflicts
+        sliderContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
     }
     
     handleSwipe() {
-        const diffX = this.touchStartX - this.touchEndX;
-        const diffY = Math.abs(this.touchStartY - this.touchEndY);
+        const threshold = 50; // Minimum distance for a swipe
+        const diff = startX - endX;
         
-        // Only handle horizontal swipes
-        if (Math.abs(diffX) > this.minSwipeDistance && diffY < 100) {
-            if (diffX > 0) {
-                // Swipe left - next slide
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                // Swiped left - go to next slide
                 this.nextSlide();
             } else {
-                // Swipe right - previous slide
+                // Swiped right - go to previous slide
                 this.prevSlide();
             }
         }
     }
-    
-    makeResponsive() {
-        const windowWidth = $(window).width();
-        
-        // Adjust slider height based on screen size
-        if (windowWidth <= 480) {
-            this.slider.find('.hero-slider__wrapper').css('height', '200px');
-        } else if (windowWidth <= 576) {
-            this.slider.find('.hero-slider__wrapper').css('height', '220px');
-        } else if (windowWidth <= 768) {
-            this.slider.find('.hero-slider__wrapper').css('height', '250px');
-        } else if (windowWidth <= 992) {
-            this.slider.find('.hero-slider__wrapper').css('height', '300px');
-        } else {
-            this.slider.find('.hero-slider__wrapper').css('height', '350px');
-        }
-        
-        // Handle section navigation scrolling on mobile
-        const sectionsContainer = $('.hero-slider__sections');
-        if (windowWidth <= 768 && sectionsContainer.length) {
-            // Enable horizontal scrolling on mobile
-            sectionsContainer.css({
-                'overflow-x': 'auto',
-                'overflow-y': 'hidden',
-                'scrollbar-width': 'none',
-                '-ms-overflow-style': 'none'
-            });
-            
-            // Hide webkit scrollbar
-            sectionsContainer.addClass('hide-scrollbar');
-        }
-    }
-    
-    nextSlide() {
-        if (this.isTransitioning) {
-            return;
-        }
-        
-        const prevSlide = this.currentSlide;
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-        this.updateSlide();
-    }
-    
-    prevSlide() {
-        if (this.isTransitioning) {
-            return;
-        }
-        
-        const prevSlide = this.currentSlide;
-        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.updateSlide();
-    }
-    
-    goToSlide(slideIndex) {
-        if (this.isTransitioning || slideIndex === this.currentSlide) {
-            return;
-        }
-        
-        const prevSlide = this.currentSlide;
-        this.currentSlide = slideIndex;
-        this.updateSlide();
-    }
-    
-    updateSlide() {
-        this.isTransitioning = true;
-        this.slides.addClass('sliding');
-        
-        this.updateSlidePosition();
-        this.updateSectionStates();
-        
-        // Remove transition class after animation
-        setTimeout(() => {
-            this.slides.removeClass('sliding');
-            this.isTransitioning = false;
-        }, 500);
-    }
-    
-    updateSlidePosition() {
-        // Calculate correct transform for 4 slides at 25% width each
-        const translateX = -this.currentSlide * 25; // 25% per slide
-        this.slides.css('transform', `translateX(${translateX}%)`);
-        
-        // Update active slide class
-        this.slideItems.removeClass('hero-slider__slide--active');
-        this.slideItems.eq(this.currentSlide).addClass('hero-slider__slide--active');
-    }
-    
-    updateSectionStates() {
-        this.sections.removeClass('hero-slider__section--active');
-        const activeSection = this.sections.filter(`[data-slide="${this.currentSlide}"]`);
-        activeSection.addClass('hero-slider__section--active');
-    }
-    
-    startAutoPlay() {
-        this.pauseAutoPlay(); // Clear any existing interval
-        
-        if (this.totalSlides > 1) {
-            this.autoPlayInterval = setInterval(() => {
-                this.nextSlide();
-            }, this.autoPlayDelay);
-        }
-    }
-    
-    pauseAutoPlay() {
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-            this.autoPlayInterval = null;
-        }
-    }
-    
-    isAutoPlaying() {
-        return this.autoPlayInterval !== null;
-    }
-    
-    // Public methods for external control
-    play() {
-        this.startAutoPlay();
-    }
-    
-    pause() {
-        this.pauseAutoPlay();
-    }
-    
-    getCurrentSlide() {
-        return this.currentSlide;
-    }
-    
-    getTotalSlides() {
-        return this.totalSlides;
-    }
-    
-    // Method to reset auto-play (useful for manual navigation)
-    resetAutoPlay() {
-        this.pauseAutoPlay();
-        this.startAutoPlay();
-    }
-    
-    // Manual test method
-    testSlider() {
-        console.log('Testing slider positioning...');
-        
-        // Test slide 0
-        this.slides.css('transform', 'translateX(0%)');
-        console.log('Set to slide 0 (translateX(0%))');
-        
-        setTimeout(() => {
-            // Test slide 1
-            this.slides.css('transform', 'translateX(-25%)');
-            console.log('Set to slide 1 (translateX(-25%))');
-            
-            setTimeout(() => {
-                // Test slide 2
-                this.slides.css('transform', 'translateX(-50%)');
-                console.log('Set to slide 2 (translateX(-50%))');
-                
-                setTimeout(() => {
-                    // Test slide 3
-                    this.slides.css('transform', 'translateX(-75%)');
-                    console.log('Set to slide 3 (translateX(-75%))');
-                    
-                    setTimeout(() => {
-                        // Back to slide 0
-                        this.slides.css('transform', 'translateX(0%)');
-                        console.log('Back to slide 0');
-                    }, 1000);
-                }, 1000);
-            }, 1000);
-        }, 1000);
-    }
-    
-    // Destroy method for cleanup
-    destroy() {
-        this.pauseAutoPlay();
-        this.slider.off();
-        $(window).off('resize.heroSlider');
-        $(document).off('keydown.heroSlider');
-        $(document).off('visibilitychange.heroSlider');
-    }
 }
 
-// Initialize hero slider when document is ready
-$(document).ready(() => {
-    if ($('.hero-slider').length > 0) {
-        // Create new instance
-        window.heroSlider = new HeroSlider();
-        console.log('Hero Slider initialized');
-        
-        // Add global test function for debugging
-        window.testHeroSlider = () => {
-            if (window.heroSlider) {
-                window.heroSlider.testSlider();
-            }
-        };
-    } else {
-        console.warn('Hero slider element not found');
-    }
+// Initialize the hero slider when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new HeroSlider();
 });
 
 // Export for use in other files
-window.HeroSlider = HeroSlider; 
+window.HeroSlider = HeroSlider;
