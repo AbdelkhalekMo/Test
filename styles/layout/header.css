@@ -1045,4 +1045,262 @@ body.mobile-menu-open {
 .header__mobile-link--special:hover {
     color: #dc3545;
     background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* Enhanced Mobile Optimizations for Small Screens */
+@media (max-width: 575.98px) {
+    /* Header adjustments for small screens */
+    .header {
+        padding: 6px 0;
+    }
+    
+    .header__container {
+        padding: 0 10px;
+    }
+    
+    .header__logo-img {
+        height: 32px;
+    }
+    
+    .header__actions {
+        gap: 0.2rem;
+    }
+    
+    .header__account,
+    .header__cart {
+        padding: 6px;
+        font-size: 0.85rem;
+        min-width: 40px;
+    }
+    
+    /* Navbar toggler optimizations */
+    .navbar-toggler {
+        padding: 3px 6px;
+        font-size: 0.9rem;
+    }
+    
+    .navbar-collapse {
+        margin-top: 0.75rem;
+        padding: 0.75rem;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    /* Compact navigation sections */
+    .navbar-group {
+        margin-bottom: 1.25rem !important;
+    }
+    
+    .navbar-main-categories .nav-link,
+    .navbar-info-links .nav-link,
+    .navbar-special-offers .nav-link {
+        padding: 8px 12px !important;
+        font-size: 0.85rem !important;
+        margin-bottom: 0.25rem;
+        border-radius: 6px;
+    }
+    
+    /* Smaller section titles */
+    .navbar-main-categories::before,
+    .navbar-info-links::before,
+    .navbar-special-offers::before {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.4rem;
+    }
+    
+    /* Mobile menu optimizations */
+    .header__mobile-menu-content {
+        width: 260px;
+        padding: 15px 12px;
+    }
+    
+    .header__mobile-search {
+        padding-top: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .header__mobile-link {
+        padding: 10px 0;
+        font-size: 0.9rem;
+    }
+    
+    .header__mobile-action {
+        padding: 12px 0;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ultra-small screens (≤480px) */
+@media (max-width: 480px) {
+    /* Ultra-compact header */
+    .header {
+        padding: 4px 0;
+    }
+    
+    .header__container {
+        padding: 0 8px;
+    }
+    
+    .header__logo-img {
+        height: 28px;
+    }
+    
+    .header__actions {
+        gap: 0.1rem;
+    }
+    
+    .header__account,
+    .header__cart {
+        padding: 4px;
+        font-size: 0.8rem;
+        min-width: 36px;
+    }
+    
+    /* Ultra-compact navbar */
+    .navbar-collapse {
+        padding: 0.5rem;
+        margin-left: -8px;
+        margin-right: -8px;
+        border-radius: 0.25rem;
+    }
+    
+    .navbar-group {
+        margin-bottom: 1rem !important;
+    }
+    
+    .navbar-main-categories .nav-link,
+    .navbar-info-links .nav-link,
+    .navbar-special-offers .nav-link {
+        padding: 6px 10px !important;
+        font-size: 0.8rem !important;
+        margin-bottom: 0.2rem;
+        line-height: 1.3;
+    }
+    
+    /* Ultra-small section titles */
+    .navbar-main-categories::before,
+    .navbar-info-links::before,
+    .navbar-special-offers::before {
+        font-size: 0.65rem;
+        margin-bottom: 0.4rem;
+        padding-bottom: 0.3rem;
+        letter-spacing: 0.3px;
+    }
+    
+    /* Compact mobile menu */
+    .header__mobile-menu-content {
+        width: 240px;
+        padding: 12px 10px;
+    }
+    
+    .header__mobile-search {
+        padding-top: 45px;
+        margin-bottom: 12px;
+    }
+    
+    .header__mobile-link {
+        padding: 8px 0;
+        font-size: 0.85rem;
+    }
+    
+    .header__mobile-action {
+        padding: 10px 0;
+        font-size: 0.85rem;
+    }
+    
+    .header__mobile-divider {
+        margin: 15px 0;
+    }
+    
+    /* Ensure close button is accessible */
+    .header__mobile-menu-content::before {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 1.8rem;
+    }
+}
+
+/* Extra small screens (≤360px) */
+@media (max-width: 360px) {
+    /* Minimal header for very small screens */
+    .header__container {
+        padding: 0 6px;
+    }
+    
+    .header__logo-img {
+        height: 26px;
+    }
+    
+    .header__account,
+    .header__cart {
+        padding: 3px;
+        font-size: 0.75rem;
+        min-width: 32px;
+    }
+    
+    /* Minimal navbar */
+    .navbar-collapse {
+        padding: 0.4rem;
+        margin-left: -6px;
+        margin-right: -6px;
+    }
+    
+    .navbar-group {
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .navbar-main-categories .nav-link,
+    .navbar-info-links .nav-link,
+    .navbar-special-offers .nav-link {
+        padding: 5px 8px !important;
+        font-size: 0.75rem !important;
+        margin-bottom: 0.15rem;
+        line-height: 1.2;
+    }
+    
+    /* Minimal section titles */
+    .navbar-main-categories::before,
+    .navbar-info-links::before,
+    .navbar-special-offers::before {
+        font-size: 0.6rem;
+        margin-bottom: 0.3rem;
+        padding-bottom: 0.25rem;
+    }
+    
+    /* Minimal mobile menu */
+    .header__mobile-menu-content {
+        width: 220px;
+        padding: 10px 8px;
+    }
+    
+    .header__mobile-search {
+        padding-top: 40px;
+        margin-bottom: 10px;
+    }
+    
+    .header__mobile-link {
+        padding: 7px 0;
+        font-size: 0.8rem;
+    }
+    
+    .header__mobile-action {
+        padding: 8px 0;
+        font-size: 0.8rem;
+    }
+    
+    .header__mobile-divider {
+        margin: 12px 0;
+    }
+    
+    /* Ensure close button is accessible */
+    .header__mobile-menu-content::before {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 1.8rem;
+    }
 } 
