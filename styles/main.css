@@ -408,6 +408,223 @@ body {
 
 @media (max-width: 576px) {
     .container {
+        padding: 0 15px;
+    }
+}
+
+/* Selected for You Section Styles */
+.selected-for-you-section {
+    margin: 20px 0 30px 0;
+    max-width: 1130px; /* Reduced from 1200px by 10% */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.selected-for-you-content {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Increased for proper distance between title and items */
+}
+
+.selected-for-you-title {
+    font-size: 15px; /* Reduced from 18px */
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.selected-items-wrapper {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 4px 0;
+    flex: 1;
+    padding-left: 15px;
+}
+
+.selected-items-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.selected-item {
+    flex: 0 0 auto;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 16px; /* Reduced from 20px */
+    padding: 4px 8px; /* Reduced from 6px 12px */
+    font-size: 10px; /* Reduced from 12px */
+    color: #495057;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Reduced from 6px */
+}
+
+.selected-item:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+    color: #343a40;
+    text-decoration: none;
+}
+
+.selected-item .item-arrow {
+    font-size: 8px; /* Reduced from 10px */
+    color: #999;
+}
+
+.selected-for-you-arrow {
+    width: 28px; /* Reduced from 35px */
+    height: 28px; /* Reduced from 35px */
+    border-radius: 50%;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.selected-for-you-arrow:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.selected-for-you-arrow i {
+    font-size: 10px; /* Reduced from 12px */
+    color: #6DB33F;
+    transition: transform 0.2s ease;
+}
+
+.selected-for-you-arrow:hover i {
+    transform: translateX(2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .selected-for-you-section {
+        padding: 0 15px;
+    }
+    
+    .selected-for-you-content {
+        gap: 12px; /* Proper distance between title and items */
+    }
+    
+    .selected-for-you-title {
+        font-size: 13px;
+    }
+    
+    .selected-items-wrapper {
+        gap: 6px;
+        margin-right: 6px; /* Decreased gap before arrow */
+    }
+    
+    .selected-item {
+        padding: 3px 6px;
+        font-size: 9px;
+        border-radius: 14px;
+    }
+    
+    .selected-item .item-arrow {
+        font-size: 7px;
+    }
+    
+    .selected-for-you-arrow {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .selected-for-you-arrow i {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 768px) {
+    .selected-for-you-section {
+        margin: 15px 0 25px 0;
+        padding: 0 15px;
+    }
+    
+    .selected-for-you-title {
+        font-size: 12px;
+    }
+    
+    .selected-for-you-content {
+        gap: 10px; /* Proper distance between title and items */
+    }
+    
+    .selected-items-wrapper {
+        gap: 5px;
+        margin-right: 5px; /* Decreased gap before arrow */
+    }
+    
+    .selected-item {
+        padding: 3px 5px;
+        font-size: 8px;
+        gap: 3px;
+        border-radius: 12px;
+    }
+    
+    .selected-item .item-arrow {
+        font-size: 6px;
+    }
+    
+    .selected-for-you-arrow {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .selected-for-you-arrow i {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .selected-for-you-section {
+        margin: 12px 0 20px 0;
         padding: 0 10px;
+    }
+    
+    .selected-for-you-title {
+        font-size: 11px;
+    }
+    
+    .selected-for-you-content {
+        gap: 8px; /* Proper distance between title and items */
+    }
+    
+    .selected-items-wrapper {
+        gap: 4px;
+        margin-right: 4px; /* Decreased gap before arrow */
+    }
+    
+    .selected-item {
+        padding: 2px 4px;
+        font-size: 7px;
+        border-radius: 10px;
+        gap: 2px;
+    }
+    
+    .selected-item .item-arrow {
+        font-size: 5px;
+    }
+    
+    .selected-for-you-arrow {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .selected-for-you-arrow i {
+        font-size: 7px;
     }
 } 

@@ -533,80 +533,68 @@ const PRODUCT_DATA = {
         }
     ]),
     
-    specials: assignImagesToSpecials([
+    specials: [
         {
-            id: 7,
+            id: 'sp1',
             title: "California Gold Nutrition, Omega-3 Premium Fish Oil, 100 Fish Gelatin Softgels",
-            rating: 5,
-            reviewCount: 41341,
+            image: "assets/images/special picked for you/California Gold Nutrition, Omega-3 Premium Fish Oil, 100 Fish Gelatin Softgels (1,100 mg per Softgel).png",
+            rating: 4.5,
+            reviewCount: 45734,
             currentPrice: "EGP591.06",
-            originalPrice: "EGP618.22",
-            badge: "Sale"
+            originalPrice: "EGP634.37",
+            badge: "Best Seller"
         },
         {
-            id: 8,
-            title: "California Gold Nutrition, Gold C, USP Grade Vitamin C, 500 mg, 240 Veggie Caps",
-            rating: 5,
-            reviewCount: 19219,
-            currentPrice: "EGP747.10",
-            originalPrice: "EGP815.18",
-            badge: "Sale"
+            id: 'sp2',
+            title: "California Gold Nutrition, Gold C™, USP Grade Vitamin C, 1,000 mg, 240 Veggie Capsules",
+            image: "assets/images/special picked for you/California Gold Nutrition, Gold C™, USP Grade Vitamin C, 1,000 mg, 240 Veggie Capsules.png",
+            rating: 4.5,
+            reviewCount: 50717,
+            currentPrice: "EGP747.30",
+            originalPrice: "EGP859.18",
+            badge: "Popular"
         },
         {
-            id: 9,
+            id: 'sp3',
             title: "California Gold Nutrition, Omega-3, Premium Fish Oil, 240 Fish Gelatin Softgels",
-            rating: 5,
-            reviewCount: 41517,
+            image: "assets/images/special picked for you/California Gold Nutrition, Omega-3, Premium Fish Oil, 240 Fish Gelatin Softgels.png",
+            rating: 4.6,
+            reviewCount: 45617,
             currentPrice: "EGP1,289.64",
-            originalPrice: "EGP1,417.22",
-            badge: "Sale"
+            originalPrice: "EGP1,510.17",
+            badge: "Premium"
         },
         {
-            id: 10,
-            title: "California Gold Nutrition, Sport, Creatine Monohydrate, Unflavored, 16 oz (454 g)",
-            rating: 5,
-            reviewCount: 1307,
+            id: 'sp4',
+            title: "California Gold Nutrition, Sport, Creatine Monohydrate, Unflavored, 1 lb (454 g)",
+            image: "assets/images/special picked for you/California Gold Nutrition, Sport, Creatine Monohydrate, Unflavored, 1 lb (454 g).png",
+            rating: 4.4,
+            reviewCount: 17200,
             currentPrice: "EGP936.11",
-            originalPrice: "EGP1,031.01",
-            badge: "Sale"
+            originalPrice: "EGP1,101.31",
+            badge: "Sport"
         },
         {
-            id: 11,
-            title: "California Gold Nutrition, Omega 800 Ultra-Concentrated Omega-3",
-            rating: 5,
-            reviewCount: 11647,
+            id: 'sp5',
+            title: "California Gold Nutrition, Omega 800 Ultra-Concentrated Omega-3 Fish Oil",
+            image: "assets/images/special picked for you/California Gold Nutrition, Omega 800 Ultra-Concentrated Omega-3 Fish Oil, kd-pur Triglyceride Form, 30 Fish Gelatin Softgels (1,000 mg per Softgel).png",
+            rating: 4.7,
+            reviewCount: 11943,
             currentPrice: "EGP419.53",
-            originalPrice: "EGP459.48",
-            badge: "Sale"
+            originalPrice: "EGP493.56",
+            badge: "Ultra"
         },
         {
-            id: 12,
-            title: "NOW Foods, Omega-3 Fish Oil, Lemon Flavored, 16.9 fl oz (500 ml)",
-            rating: 5,
-            reviewCount: 10169,
+            id: 'sp6',
+            title: "NOW Foods, Omega-3 Fish Oil, 200 Softgels",
+            image: "assets/images/special picked for you/NOW Foods, Omega-3 Fish Oil, 200 Softgels.png",
+            rating: 4.5,
+            reviewCount: 122925,
             currentPrice: "EGP688.81",
-            originalPrice: "EGP764.61",
-            badge: "Sale"
-        },
-        {
-            id: 15,
-            title: "Extra Special Product for Carousel 1",
-            rating: 4.8,
-            reviewCount: 123,
-            currentPrice: "EGP399.99",
-            originalPrice: "EGP499.99",
-            badge: "Hot"
-        },
-        {
-            id: 16,
-            title: "Extra Special Product for Carousel 2",
-            rating: 4.9,
-            reviewCount: 567,
-            currentPrice: "EGP799.99",
-            originalPrice: null,
-            badge: null
+            originalPrice: "EGP810.83",
+            badge: "NOW"
         }
-    ]),
+    ],
     
     trending: assignImagesToProducts([
         {
